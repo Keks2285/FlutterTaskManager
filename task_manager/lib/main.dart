@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import 'models/user.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,6 +35,14 @@ class MyApp extends StatelessWidget {
                             hintText: "Введите пароль"
                         )),
                           
+                          ),
+                          Container(alignment: Alignment.bottomCenter,
+                          child:ElevatedButton(
+                            child: Text("Войти"),
+                             onPressed: ()async{
+                              await Dio().put('http://127.0.0.1:8081/token', data: User(userName: 'qwe', email: 'qwe@mail.ru', password: '123'));
+                             },
+                            )
                           )
                     ]
                     ),
