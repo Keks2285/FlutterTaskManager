@@ -9,6 +9,16 @@ class _User {
   int? id;
   @Column(unique: true, indexed: true)
   String? email;
+
+  @Column(unique: false, indexed: true)
+  String? firstname;
+
+  @Column(unique: false, indexed: true)
+  String? lastname;
+
+  @Column(unique: false, indexed: true)
+  String? middlename;
+
   @Serialize(input: true, output: false)
   String? password;
   @Column(nullable: true)

@@ -1,14 +1,18 @@
 import 'dart:io';
 
 import 'package:conduit/conduit.dart';
-import 'package:conduit/conduit.dart';
+import 'package:taskapi/model/user.dart';
+import 'dart:async';
+import 'controllers/auth_controller.dart';
+import 'controllers/token_contriller.dart';
+import 'controllers/user_controller.dart';
 class AppService extends ApplicationChannel{
 late final ManagedContext managedContext;
 
 @override
   Future prepare() {
-    final _persistentStore =_initDataBase();
-     managedContext=ManagedContext(ManagedDataModel.fromCurrentMirrorSystem(), _persistentStore);
+    final persistentStore =_initDataBase();
+     managedContext=ManagedContext(ManagedDataModel.fromCurrentMirrorSystem(), persistentStore);
     // TODO: implement prepare
     return super.prepare();
   }
@@ -19,7 +23,11 @@ late final ManagedContext managedContext;
 
   @override
   // TODO: implement entryPoint
-  Controller get entryPoint => Router();
+  Controller get entryPoint => Router()
+      ..route('token/[:refresh]')
+        .link(() => AppAuthContoler(managedContext))
+      ..route('user').link(AppTokenContoller.new)!
+        .link(() => AppUserConttolelr(managedContext));
 
 
   PersistentStore _initDataBase(){
