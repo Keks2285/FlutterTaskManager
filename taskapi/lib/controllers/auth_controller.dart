@@ -69,61 +69,47 @@ class AppAuthContoler extends ResourceController {
   }
 
 
-   @Operation.get()
-  Future<Response>signIn(@Bind.body() User user) async{
-    //  Как я это вижу:
-    // пользователь отправляет свою почту и пароль 
-    // по почте ищется пользователь (пароль и соль)
-    // сравнивается введенный пароль(захэширован с помощью полученной соли)
-    // если пароли совпадают, то пользователь авторизовывается 
+  @Operation.get()
+  Future<Response> signIn(@Bind.body() User user) async {
+    if (user.password == null || user.email == null) {
+      return Response.badRequest(
+          body: ModelResponse(message: 'Поля  password username обязательны'));
+    }
 
-    // if (user.password == null || user.email == null) {                          // такую проверку лучше сделать на стороне приложения
-    //   return Response.badRequest(
-    //       body: ModelResponse(message: 'Поля  password username обязательны'));
-    // }
-    try{
-      // Генерация соли
-      // final salt = generateRandomSalt();
-      // final hashPassword = generatePasswordHash(user.password!, salt);
+    try {
+      // Поиск пользователя по имени в базе данных
+      final qFindUser = Query<User>(managedContext)
+        ..where((element) => element.email).equalTo(user.email)
+        ..returningProperties(
+          (element) => [
+            element.id,
+            element.salt,
+            element.hashPassword,
+          ],
+        );
+      final findUser = await qFindUser.fetchOne();
 
-       late final int id;
+      if (findUser == null) {
+        throw QueryException.input('Пользователь не найден', []);
+      }
+      final requestHashPassword =
+          generatePasswordHash(user.password ?? '', findUser.salt ?? '');
+      if (requestHashPassword == findUser.hashPassword) {
+        _updateTokens(findUser.id ?? -1, managedContext);
+        final newUser =
+            await managedContext.fetchObjectWithID<User>(findUser.id);
 
-
-      await managedContext.transaction((transaction) async {
-        // Создаем запрос для создания пользователя
-        final qCreateUser = Query<User>(transaction)
-          ..values.email = user.email;
-          //..values.hashPassword = hashPassword;
-          
-        // Добавление пользоваетля в базу данных
-        final createdUser = await qCreateUser.fetch() as User;
-
-        // Сохраняем id пользователя
-        id = createdUser.id!;
-
-        // Обновление токена
-        _updateTokens(id, transaction);
-      });
-      
-      final userData = await managedContext.fetchObjectWithID<User>(id);
-
-
-      return Response.ok(
-        ModelResponse(
-          data: userData!.backing.contents,
-          message: 'Пользователь успешно авторизован',
-        ),
-      );
-
-
-    }on QueryException catch(e){
+        return Response.ok(ModelResponse(
+          data: newUser!.backing.contents,
+          message: 'Успешная авторизация',
+        ));
+      } else {
+        throw QueryException.input('Не верный пароль', []);
+      }
+    } on QueryException catch(e){
       return Response.serverError(body: ModelResponse(message: e.message));
     }
-    
   }
-
-
-
 
 
   @Operation.post('refresh')
