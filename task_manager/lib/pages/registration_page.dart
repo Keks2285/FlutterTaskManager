@@ -4,9 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/block/bloc/auth_bloc.dart';
 import '../models/user.dart';
 
-class Firstpage extends StatelessWidget {
+class RegistrationPage extends StatelessWidget {
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final middlenameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -14,7 +17,7 @@ class Firstpage extends StatelessWidget {
       providers:[
         BlocProvider(
           create: 
-            (context) => AuthBloc(AuthBlocState(message: "авторизаgyufgvgfvgrtyrfция")))
+            (context) => AuthBloc(AuthBlocState(message: "авторизаnfjenjfnция", isSucces: false, countTries: 0)))
       ],
       
       

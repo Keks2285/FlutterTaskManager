@@ -47,11 +47,11 @@ class accessDeniedEvent extends AuthBlocEvent{
    accessDeniedEvent({ required this.count});
 }
 class AuthBlocState{
-  String message="";
+  String? message="";
   bool? isSucces=false;
   int? countTries=0;
 
-  AuthBlocState({required this.message, this.isSucces, this.countTries});
+  AuthBlocState({ this.message, this.isSucces, this.countTries});
 
 }
 
