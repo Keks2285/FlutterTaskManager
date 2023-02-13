@@ -15,13 +15,13 @@ class AppAuthContoler extends ResourceController {
   final ManagedContext managedContext;
 
 
-  @Operation.post()
+  @Operation.put()
   Future<Response>signUp(@Bind.body() User user) async{
 
-    // if (user.password == null || user.email == null) {                          // такую проверку лучше сделать на стороне приложения
-    //   return Response.badRequest(
-    //       body: ModelResponse(message: 'Поля  password username обязательны'));
-    // }
+    if (user.password == "" || user.email == ""  || user.firstname=="" || user.lastname=="") {
+      return Response.badRequest(
+          body: ModelResponse(message: 'Все поля должны быть заполнены'));
+    }
     try{
       // Генерация соли
       final salt = generateRandomSalt();
@@ -57,23 +57,27 @@ class AppAuthContoler extends ResourceController {
       return Response.ok(
         ModelResponse(
           data: userData!.backing.contents,
-          message: 'Пользователь успешно зарегистрировался',
+          message: 'Пользователь успешно зарегистрирован',
         ),
       );
 
 
     }on QueryException catch(e){
-      return Response.serverError(body: ModelResponse(message: e.message));
+      return Response.serverError(
+
+        body:  ModelResponse(message: e.message)
+      
+      );
     }
     
   }
 
 
-  @Operation.get()
+  @Operation.post()
   Future<Response> signIn(@Bind.body() User user) async {
     if (user.password == null || user.email == null) {
       return Response.badRequest(
-          body: ModelResponse(message: 'Поля  password username обязательны'));
+          body: ModelResponse(message: 'Поля  password и email обязательны'));
     }
 
     try {
