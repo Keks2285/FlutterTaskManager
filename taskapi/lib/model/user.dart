@@ -1,6 +1,7 @@
 
 
 import 'package:conduit/conduit.dart';
+import 'package:taskapi/model/task.dart';
 
 class User extends ManagedObject<_User> implements _User {}
 
@@ -29,4 +30,6 @@ class _User {
   String? salt;
   @Column(omitByDefault: true)
   String? hashPassword;
+
+  ManagedSet<Task>? taskList;
 }

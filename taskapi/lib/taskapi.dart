@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:conduit/conduit.dart';
 import 'package:taskapi/model/user.dart';
+import 'controllers/task_controller.dart';
+import 'model/user.dart';
+import 'model/task.dart';
 import 'dart:async';
 import 'controllers/auth_controller.dart';
 import 'controllers/token_contriller.dart';
@@ -27,7 +30,9 @@ late final ManagedContext managedContext;
       ..route('token/[:refresh]')
         .link(() => AppAuthContoler(managedContext))
       ..route('user').link(AppTokenContoller.new)!
-        .link(() => AppUserConttolelr(managedContext));
+        .link(() => AppUserConttolelr(managedContext))
+      ..route('task').link(AppTokenContoller.new)!
+        .link(() => AppTaskConttolelr(managedContext));
 
 
   PersistentStore _initDataBase(){
