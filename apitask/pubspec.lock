@@ -138,7 +138,7 @@ packages:
     source: hosted
     version: "4.3.6"
   conduit_postgresql:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: conduit_postgresql
       sha256: "19f978635386203a29071c508e2c070320b956320dfd00f27a01f631d6b97163"
