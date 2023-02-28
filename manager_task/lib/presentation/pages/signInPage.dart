@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../models/user.dart';
-import 'package:manager_task/blocs/auth_bloc.dart';
+import '../../data/models/user.dart';
+import 'package:manager_task/presentation/blocs/auth_bloc.dart';
 
 class SignInPage extends StatelessWidget {
   final emailController = TextEditingController();
@@ -23,10 +23,10 @@ class SignInPage extends StatelessWidget {
       
       child: BlocConsumer<AuthBloc, AuthBlocState>(
         listener: (context, state) {
-           if(state.succes!)
+           if(state.succes)
             {
-              a="Успешная авторизация123";
-            }else{ a="не спешная авторизация";};
+              Navigator.pushNamed(context,"/CreateTask");
+            }
         },
         builder: (context, state) {
           return  Scaffold(
@@ -58,7 +58,7 @@ class SignInPage extends StatelessWidget {
                                             border: OutlineInputBorder(),
                                             hintText: "Введите пароль")),
                                   ),
-                                  Text(state.message!),
+                                  Text(state.message),
                                   Container(
                                     //color: Colors.black,
                                     margin: EdgeInsets.fromLTRB(0, 20, 0, 20),

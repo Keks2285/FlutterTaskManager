@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:manager_task/pages/signInPage.dart';
-import 'package:manager_task/pages/signUpPage.dart';
+import 'package:manager_task/presentation/pages/createTaskPage.dart';
+import 'package:manager_task/presentation/pages/signInPage.dart';
+import 'package:manager_task/presentation/pages/signUpPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       routes: {
         //FinanceData.routeName: (context) => const FinanceData(),
         "/SignIn": (context) => SignInPage(),
-        "/SignUp":  (context) => SignUpPage()
+        "/SignUp":  (context) => SignUpPage(),
+        "/CreateTask":  (context) => CreateTaskPage()
         //SignIn.routeName: (context) => const SignIn()
       },
       home:  SignInPage(),

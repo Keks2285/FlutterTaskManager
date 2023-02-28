@@ -166,7 +166,7 @@ class AppAuthContoler extends ResourceController {
       otherClaims: {'id': id},
     );
     final refreshClaimSet = JwtClaim(
-      otherClaims: {'id': id},
+      otherClaims: {'id': id}
     );
     final tokens = <String, String>{};
     tokens['access'] = issueJwtHS256(accessClaimSet, key);

@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../common/app_env.dart';
-import '../models/user.dart';
+import '../../common/app_env.dart';
+import '../../data/models/user.dart';
 
 class RegBloc extends Bloc<RegBlocEvent, RegBlocState>{
   RegBloc():super(RegInitState()){

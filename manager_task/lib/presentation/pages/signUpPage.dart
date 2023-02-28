@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../models/user.dart';
-import 'package:manager_task/blocs/registration_bloc.dart';
+import '../../data/models/user.dart';
+import 'package:manager_task/presentation/blocs/registration_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -21,6 +21,7 @@ class SignUpPage extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             return Scaffold(
+             
                 backgroundColor: Color.fromARGB(255, 3, 158, 162),
                 body: Form(
                   key: _formKey,
@@ -37,7 +38,7 @@ class SignUpPage extends StatelessWidget {
                                       return 'Пожалуйста введите свой Email';
 
                                     String p =
-                                        "[a-zA-Z0-9+.\_\%-+]{1,256}@[a-zA-Z0-9][a-zA-Z0-9-]{0,64}(.[a-zA-Z0-9][a-zA-Z0-9-]{0,25})+";
+                                        r"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$";
                                     RegExp regExp = new RegExp(p);
 
                                     if (regExp.hasMatch(value!)) return null;
@@ -91,6 +92,7 @@ class SignUpPage extends StatelessWidget {
                                     border: OutlineInputBorder(),
                                     hintText: "Повторите пароль")),
                           ),
+                          
                           Container(
                             margin: EdgeInsets.fromLTRB(50, 0, 50, 10),
                             child: TextFormField(
@@ -145,7 +147,7 @@ class SignUpPage extends StatelessWidget {
                                   if (!_formKey.currentState!.validate())
                                     return;
 
-                                  BlocProvider.of<RegBloc>(context).add(
+                                  BlocProvider.of<RegBloc>(context).add( /////
                                       RegBlocEvent(
                                           password: passController.text,
                                           email: emailController.text,
@@ -181,4 +183,3 @@ class SignUpPage extends StatelessWidget {
   // }
 }
 
-class SignUp {}

@@ -31,9 +31,11 @@ late final ManagedContext managedContext;
         .link(() => AppAuthContoler(managedContext))
       ..route('user').link(AppTokenContoller.new)!
         .link(() => AppUserConttolelr(managedContext))
-      ..route('task').link(AppTokenContoller.new)!
-        .link(() => AppTaskConttolelr(managedContext));
-
+      ..route('task/[:id]').link(AppTokenContoller.new)!
+        .link(() => AppTaskConttolelr(managedContext))
+     // ..route('page/[:page]').link(AppTokenContoller.new)!
+     //   .link(() => AppTaskConttolelr(managedContext));
+;
 
   PersistentStore _initDataBase(){
     final username = Platform.environment['DB_USERNAME']??'postgres';

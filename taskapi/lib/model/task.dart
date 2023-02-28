@@ -1,5 +1,7 @@
 
 
+import 'dart:ffi';
+
 import 'package:conduit/conduit.dart';
 import 'package:taskapi/model/user.dart';
 
@@ -18,6 +20,9 @@ class _Task {
 
   @Column(unique: false, indexed: true)
   DateTime? dateTask;
+
+  @Column(unique:false, nullable: true, defaultValue: "false")
+  bool? isDeleted;
 
   @Relate(#taskList, isRequired: true, onDelete: DeleteRule.cascade)
   User? user;
