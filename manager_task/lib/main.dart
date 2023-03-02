@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: {
         //FinanceData.routeName: (context) => const FinanceData(),
         "/SignIn": (context) => SignInPage(),
