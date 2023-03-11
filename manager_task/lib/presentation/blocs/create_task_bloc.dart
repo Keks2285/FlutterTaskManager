@@ -6,67 +6,80 @@ import 'package:manager_task/data/repositories/auth_repo.dart';
 import '../../common/app_env.dart';
 import '../../data/models/user.dart';
 
-class CreateTaskBloc extends Bloc<TaskBlocEvent, CreateTaskBlocState>{
-  CreateTaskBloc():super(CreateTaskInitState(dateTime: "2022-03-01 12:20:00")){
-    
-    
-    on<SelectedDateTimeEvent>((SelectedDateTimeEvent event, Emitter<CreateTaskBlocState> emit) async{
+class CreateTaskBloc extends Bloc<TaskBlocEvent, CreateTaskBlocState> {
+  CreateTaskBloc()
+      : super(CreateTaskInitState(
+            dateTime: "2022-03-01 12:20:00", selectedtag: "#Учеба")) {
+    on<SelectedDateTimeEvent>(
+        (SelectedDateTimeEvent event, Emitter<CreateTaskBlocState> emit) async {
       emit(CreateTaskInitState(
-        dateTime: 
-          event.dateTime.year.toString()+"-"
-          +event.dateTime.month.toString()+"-"
-          +event.dateTime.day.toString()+" "+
-          event.timeOfDay.hour.toString()+":"+
-          event.timeOfDay.minute.toString()+":00"
-        ));
+          selectedtag: event.selectedtag,
+          dateTime: event.dateTime.year.toString() +
+              "-" +
+              event.dateTime.month.toString() +
+              "-" +
+              event.dateTime.day.toString() +
+              " " +
+              event.timeOfDay.hour.toString() +
+              ":" +
+              event.timeOfDay.minute.toString() +
+              ":00"));
     });
 
-    on<SelectedTagEvent>((SelectedTagEvent event, Emitter<CreateTaskBlocState> emit)async{
+    on<SelectedTagEvent>(
+        (SelectedTagEvent event, Emitter<CreateTaskBlocState> emit) async {
       emit(SelectedTagState(
-        selectedtag: event.selectedtag
-      ));
+          selectedtag: event.selectedtag, dateTime: event.dateTime));
     });
   }
-
 }
 
-
-abstract class CreateTaskBlocState{
-  String message="";
-  bool succes=false;
-  String selectedtag="#Учеба";
-  final String dateTime="";
+abstract class CreateTaskBlocState {
+  String message = "";
+  bool succes = false;
+  String selectedtag = "#Учеба";
+  final String dateTime = "";
+  final String TimeOfDay = "";
 }
 
-abstract class TaskBlocEvent{
-}
+abstract class TaskBlocEvent {}
 
-
- class CreateTaskBlocEvent extends TaskBlocEvent{
-  final DateTime dateTime;
-  final TimeOfDay timeOfDay;
-  CreateTaskBlocEvent({required  this.dateTime, required this.timeOfDay});
-}
-
-
-class SelectedTagEvent extends TaskBlocEvent{
-  final String selectedtag;
-  SelectedTagEvent({required this.selectedtag});
-} 
-
-class SelectedDateTimeEvent extends TaskBlocEvent{
-  final DateTime dateTime;
-  final TimeOfDay timeOfDay;
-  SelectedDateTimeEvent({required  this.dateTime, required this.timeOfDay});
-}
-
-class CreateTaskInitState extends CreateTaskBlocState{
-  @override
-  String get message=>"Введите данные задачи";
+class CreateTaskBlocEvent extends TaskBlocEvent {
   final String dateTime;
-  CreateTaskInitState({required this.dateTime});
+  final String timeOfDay;
+  CreateTaskBlocEvent({required this.dateTime, required this.timeOfDay});
 }
-class SelectedTagState extends CreateTaskBlocState{
+
+class SelectedTagEvent extends TaskBlocEvent {
   final String selectedtag;
-  SelectedTagState({required this.selectedtag});
+  final String dateTime;
+  final String timeOfDay;
+  SelectedTagEvent(
+      {required this.selectedtag,
+      required this.dateTime,
+      required this.timeOfDay});
+}
+
+class SelectedDateTimeEvent extends TaskBlocEvent {
+  final String selectedtag; //
+  final DateTime dateTime;
+  final TimeOfDay timeOfDay;
+  SelectedDateTimeEvent(
+      {required this.dateTime,
+      required this.timeOfDay,
+      required this.selectedtag});
+}
+
+class CreateTaskInitState extends CreateTaskBlocState {
+  @override
+  String get message => "Введите данные задачи";
+  final String dateTime;
+  final String selectedtag;
+  CreateTaskInitState({required this.dateTime, required this.selectedtag});
+}
+
+class SelectedTagState extends CreateTaskBlocState {
+  final String selectedtag; //
+  final String dateTime;
+  SelectedTagState({required this.selectedtag, required this.dateTime});
 }

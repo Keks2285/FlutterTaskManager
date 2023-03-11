@@ -3,8 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:manager_task/presentation/pages/createTaskPage.dart';
 import 'package:manager_task/presentation/pages/signInPage.dart';
 import 'package:manager_task/presentation/pages/signUpPage.dart';
+import 'dart:developer' as developer;
+
 
 void main() {
+  
+   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 

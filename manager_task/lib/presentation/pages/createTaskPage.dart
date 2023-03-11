@@ -18,7 +18,7 @@ class CreateTaskPage extends StatelessWidget {
     "#Семья",
     "#Другое",
   ];
-  //String? selectedItem = "#Учеба";
+//String? selectedItem = "#Учеба";
 //CreateTaskPage({super.key});
   Future<void> _showPicker(BuildContext context) async {
     await showDatePicker(
@@ -49,10 +49,10 @@ class CreateTaskPage extends StatelessWidget {
           return Scaffold(
               backgroundColor: Color.fromARGB(255, 3, 158, 162),
               body: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-   // ignore: prefer_interpolation_to_compose_strings
-                  /////////////////////////////////////////
+// ignore: prefer_interpolation_to_compose_strings
+/////////////////////////////////////////
 
                   Container(
                     margin: EdgeInsets.fromLTRB(20, 50, 20, 20),
@@ -67,46 +67,71 @@ class CreateTaskPage extends StatelessWidget {
                   ),
                   Container(
 //color: Colors.black,
-                      margin: EdgeInsets.fromLTRB(20, 0, 0, 20),
-                      padding: EdgeInsets.fromLTRB(15, 0, 5, 0),
+                      //margin: EdgeInsets.fromLTRB(20, 0, 0, 20),
+                      //padding: EdgeInsets.fromLTRB(15, 0, 5, 0),
                       width: 220,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: Colors.white),
-                      alignment: Alignment.topLeft,
+                      alignment: Alignment.center,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(state.dateTime),
                           IconButton(
+                            alignment: Alignment.centerRight,
                             icon: Icon(Icons.calendar_month_sharp),
                             onPressed: () {
                               _showPicker(context).then((value) {
                                 BlocProvider.of<CreateTaskBloc>(context).add(
                                     SelectedDateTimeEvent(
                                         dateTime: selectedDateTime,
-                                        timeOfDay: selectedTime));
+                                        timeOfDay: selectedTime,
+                                        selectedtag: state.selectedtag));
                               });
                             },
                           ),
-                          
                         ],
                       )),
+                  
                       Container(
-                        margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: DropdownButton<String>(
-                                value: state.selectedtag,
-                                items: dropdownMenuItems.map((element) =>
-                                    DropdownMenuItem<String>(
-                                            value: element, 
-                                            child: Text(element))
-                                        ).toList(),
-                                onChanged: (element){
-                                  BlocProvider.of<CreateTaskBloc>(context).add(
-                                    SelectedTagEvent(
-                                        selectedtag: element!));
-                                  //selectedItem=value;
-                                }),
-                      )
+                            value: state.selectedtag,
+                            items: dropdownMenuItems
+                                .map((element) => DropdownMenuItem<String>(
+                                    value: element, child: Text(element)))
+                                .toList(),
+                            onChanged: (element) {
+                              BlocProvider.of<CreateTaskBloc>(context).add(
+                                  SelectedTagEvent(
+                                      dateTime: state.dateTime,
+                                      timeOfDay: state.dateTime,
+                                      selectedtag: element!));
+
+//selectedItem=value;
+                            }),
+                      ),
+                    
+                  
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 10, 20),
+                    child: ElevatedButton(
+                        child: Text("Добавить задачу"),
+                        onPressed: () {
+                          //Navigator.pushNamed(context,"/SignUp");
+                          //logging();
+                        }),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: ElevatedButton(
+                        child: Text("Добавить уведомление"),
+                        onPressed: () {
+                          //Navigator.pushNamed(context,"/SignUp");
+                          //logging();
+                        }),
+                  )
                 ],
               ));
         }));

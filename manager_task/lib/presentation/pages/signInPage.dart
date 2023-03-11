@@ -1,17 +1,33 @@
+import 'dart:math';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manager_task/presentation/customWidgets/customCheckbox.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/models/user.dart';
 import 'package:manager_task/presentation/blocs/auth_bloc.dart';
+import 'dart:developer' as developer;
 
 class SignInPage extends StatelessWidget {
   final emailController = TextEditingController();
   final passController = TextEditingController();
-
+  bool rememberMe=false;
+  
   //SignInPage(String s);
   @override
   Widget build(BuildContext context) {
-    String a =""; 
+
+     void logging ()async{
+        final prefs = await SharedPreferences.getInstance();
+        developer.log(prefs.getString("email")?? prefs.getString("accesToken")??" ", name: "mylog");
+        developer.log(prefs.getString("accesToken")?? prefs.getString("accesToken")??" ", name: "mylog");
+    }
+
+
+
+
+    //String a =""; 
     return MultiBlocProvider(
      
        providers:[
@@ -70,7 +86,7 @@ class SignInPage extends StatelessWidget {
                                           child: Text("Войти")
                                           ),
                                         onPressed: () async {
-                                          BlocProvider.of<AuthBloc>(context).add(AuthLoginEvent(password: passController.text, email: emailController.text));
+                                          BlocProvider.of<AuthBloc>(context).add(AuthLoginEvent(password: passController.text, email: emailController.text, remember: rememberMe));
                                         },
                                       )),
                                       
@@ -89,6 +105,17 @@ class SignInPage extends StatelessWidget {
                                 ]),
                                 
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Запомнить меня"),
+                                MyCheckBox(
+                                  onChanged: () {
+                                    rememberMe=!rememberMe;
+                                  },
+                                ),
+                              ],
+                          ),
                         Align(
                           
                           alignment: Alignment.bottomRight,
@@ -99,7 +126,9 @@ class SignInPage extends StatelessWidget {
                                           child: Text("Регистрация"),
                                           
                                           onPressed: () {
-                                          Navigator.pushNamed(context,"/SignUp");}
+                                          Navigator.pushNamed(context,"/SignUp");
+                                          logging();
+                                          }
 
                                         ),
                                       ),

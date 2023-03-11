@@ -16,7 +16,7 @@ class AuthBloc extends Bloc<AuthBlocEvent,AuthBlocState>{
       //try{
         
 
-            var authResult = await AuthRepo().signIn(event.email, event.password);
+            var authResult = await AuthRepo().signIn(event.email, event.password, event.remember);
 
             authResult.fold(
               (l) => emit(AuthFailedState(message: l)),
@@ -46,7 +46,8 @@ class AuthLoginEvent extends AuthBlocEvent{
   //User user;
   String password;
   String email;
-  AuthLoginEvent({required this.email, required this.password});
+  bool remember; 
+  AuthLoginEvent({required this.email, required this.password, required this.remember});
 }
 
 

@@ -4,38 +4,62 @@ import 'package:flutter/material.dart';
 
 import '../../common/app_env.dart';
 import '../../data/models/user.dart';
+import '../../data/repositories/auth_repo.dart';
 
 class RegBloc extends Bloc<RegBlocEvent, RegBlocState>{
   RegBloc():super(RegInitState()){
     on<RegBlocEvent>((RegBlocEvent event, Emitter<RegBlocState> emit) async{
-       try{
-        var result = 
-        await DioProvider().dio.put(AppEnv.auth,data: 
-          User(
+
+          User newUser=  User(
             email:event.email,
             password:event.password, 
             firstname: event.firstname, 
             lastname: event.lastname,
             middlename: event.middlename??'',
             accessToken: "",
-            refreshToken: ""));
+            refreshToken: "");
 
-        var data = User.fromJson(result.data['data']);
-        if(result.statusCode == 200){
-          if(data.refreshToken == null){
-            throw DioError(requestOptions: RequestOptions(path: ''),error: 'Токен равен нулю');
-          }
-          emit(RegSuccesState(message: "Успешная регистрация"));
-        }
-        } on DioError catch(e){
+          var authResult = await AuthRepo().signUp(newUser);
 
-          if( e.response?.data['message']=="entity_already_exists"){
-            emit(RegFailedState(message: 'Почта уже используется в системе'));
-          } else{
-            emit(RegFailedState(message: e.response?.data['message'] ??'Проблемы с сетью проверьте подключение`'));
-          }
+
+
+            authResult.fold(
+              (l) => emit(RegFailedState(message: l)),
+              (r) => emit(RegSuccesState(message: "Успешная авторизация"))
+            );
+
+
+
+
+
+      //  try{
+      //   // var result = 
+      //   // await DioProvider().dio.put(AppEnv.auth,data: 
+      //   //   User(
+      //   //     email:event.email,
+      //   //     password:event.password, 
+      //   //     firstname: event.firstname, 
+      //   //     lastname: event.lastname,
+      //   //     middlename: event.middlename??'',
+      //   //     accessToken: "",
+      //   //     refreshToken: ""));
+      //   //// тут переделать(перенести в репозиторий)
+      //   // var data = User.fromJson(result.data['data']);
+      //   // if(result.statusCode == 200){
+      //   //   if(data.refreshToken == null){
+      //   //     throw DioError(requestOptions: RequestOptions(path: ''),error: 'Токен равен нулю');
+      //   //   }
+      //     emit(RegSuccesState(message: "Успешная регистрация"));
+      //   }
+      //   } on DioError catch(e){
+
+      //     if( e.response?.data['message']=="entity_already_exists"){
+      //       emit(RegFailedState(message: 'Почта уже используется в системе'));
+      //     } else{
+      //       emit(RegFailedState(message: e.response?.data['message'] ??'Проблемы с сетью проверьте подключение`'));
+      //     }
             
-        }
+      //   }
 
     });
   }
