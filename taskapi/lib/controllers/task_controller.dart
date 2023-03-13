@@ -149,7 +149,7 @@ class AppTaskConttolelr extends ResourceController {
 
 
      @Operation.get("id")
-  Future<Response> get20onPageTasks(
+  Future<Response> get10onPageTasks(
     @Bind.header(HttpHeaders.authorizationHeader) String header,
       @Bind.path("id") int pageNum
   ) async {
@@ -159,8 +159,8 @@ class AppTaskConttolelr extends ResourceController {
 
       final qGetTasks = Query<Task>(managedContext)
       ..where((el)=>el.user!.id).equalTo(uId)
-      ..fetchLimit=20
-      ..offset =(pageNum-1)*20;
+      ..fetchLimit=10
+      ..offset =(pageNum-1)*10;
 
 
       final List<Task> list = await qGetTasks.fetch();

@@ -5,6 +5,8 @@ import 'package:manager_task/presentation/pages/signInPage.dart';
 import 'package:manager_task/presentation/pages/signUpPage.dart';
 import 'dart:developer' as developer;
 
+import 'package:manager_task/presentation/pages/taskList.dart';
+
 
 void main() {
   
@@ -23,7 +25,8 @@ class MyApp extends StatelessWidget {
         //FinanceData.routeName: (context) => const FinanceData(),
         "/SignIn": (context) => SignInPage(),
         "/SignUp":  (context) => SignUpPage(),
-        "/CreateTask":  (context) => CreateTaskPage()
+        "/CreateTask":  (context) => CreateTaskPage(),
+        "/ListTasks":  (context) => TaskListPage()
         //SignIn.routeName: (context) => const SignIn()
       },
       home:  SignInPage(),

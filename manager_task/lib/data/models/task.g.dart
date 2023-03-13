@@ -6,7 +6,8 @@ part of 'task.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
+_$_ToDoTask _$$_ToDoTaskFromJson(Map<String, dynamic> json) => _$_ToDoTask(
+      id: json['id'] as int,
       description: json['description'] as String?,
       tag: json['tag'] as String?,
       dateTask: json['dateTask'] == null
@@ -14,7 +15,9 @@ _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
           : DateTime.parse(json['dateTask'] as String),
     );
 
-Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ToDoTaskToJson(_$_ToDoTask instance) =>
+    <String, dynamic>{
+      'id': instance.id,
       'description': instance.description,
       'tag': instance.tag,
       'dateTask': instance.dateTask?.toIso8601String(),

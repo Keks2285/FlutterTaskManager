@@ -4,7 +4,6 @@ class ModelResponse{
   final dynamic error;
   final dynamic data;
   final dynamic message;
-  
   Map<String, dynamic> toJson() =>
     {'error': error ?? '','data': data ?? '','message': message ?? ''};
 }

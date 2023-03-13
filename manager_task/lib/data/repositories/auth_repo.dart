@@ -33,7 +33,10 @@ class AuthRepo{
               developer.log(data.accessToken!, name: "mylog");
             }
               
-
+            AppEnv.userRefreshtoken=data.accessToken!;
+            AppEnv.userEmail=data.email;
+              developer.log(AppEnv.userRefreshtoken, name: "mylog");
+              developer.log(AppEnv.userEmail, name: "mylog");
             return Right(data);
           }else{
             return Left(DefaultFailure().errorMessage);
@@ -63,6 +66,8 @@ class AuthRepo{
         }
 
     }on DioError catch(e){
+        if(e.response?.data['message']=='entity_already_exists')return Left('Почта уже занята');
+
         return Left(e.response?.data['message']??'Проблемы с сетью, проверьте подключение');
     }
   }

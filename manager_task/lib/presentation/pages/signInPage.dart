@@ -3,26 +3,43 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manager_task/common/app_env.dart';
 import 'package:manager_task/presentation/customWidgets/customCheckbox.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/models/user.dart';
 import 'package:manager_task/presentation/blocs/auth_bloc.dart';
 import 'dart:developer' as developer;
 
+import '../../data/repositories/auth_repo.dart';
+
 class SignInPage extends StatelessWidget {
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  String message="";
+  late var prefs;
   bool rememberMe=false;
+  
+  
+  Future prefsInit()async{
+         prefs = await SharedPreferences.getInstance();
+        developer.log(prefs.getString("email")?? prefs.getString("email")??" ", name: "mylog");
+        developer.log(prefs.getString("userRefreshtoken")?? prefs.getString("accesToken")??" ", name: "mylog");
+    }
   
   //SignInPage(String s);
   @override
   Widget build(BuildContext context) {
+    
+    final isEntering = (ModalRoute.of(context)?.settings.arguments??true) as bool;
 
-     void logging ()async{
-        final prefs = await SharedPreferences.getInstance();
-        developer.log(prefs.getString("email")?? prefs.getString("accesToken")??" ", name: "mylog");
-        developer.log(prefs.getString("accesToken")?? prefs.getString("accesToken")??" ", name: "mylog");
-    }
+
+      prefsInit().then((value)async{
+       if(prefs.containsKey('email')&&prefs.containsKey('accesToken') && isEntering){
+         AppEnv.userEmail=prefs.getString('email');
+         AppEnv.userRefreshtoken=prefs.getString('accesToken');
+         Navigator.pushReplacementNamed(context,"/ListTasks");
+      }
+    });
 
 
 
@@ -41,7 +58,7 @@ class SignInPage extends StatelessWidget {
         listener: (context, state) {
            if(state.succes)
             {
-              Navigator.pushNamed(context,"/CreateTask");
+              Navigator.pushReplacementNamed(context,"/ListTasks");
             }
         },
         builder: (context, state) {
@@ -74,7 +91,7 @@ class SignInPage extends StatelessWidget {
                                             border: OutlineInputBorder(),
                                             hintText: "Введите пароль")),
                                   ),
-                                  Text(state.message),
+                                  Text(message==""? state.message : message),
                                   Container(
                                     //color: Colors.black,
                                     margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
@@ -127,7 +144,7 @@ class SignInPage extends StatelessWidget {
                                           
                                           onPressed: () {
                                           Navigator.pushNamed(context,"/SignUp");
-                                          logging();
+                                          //prefsInit();
                                           }
 
                                         ),

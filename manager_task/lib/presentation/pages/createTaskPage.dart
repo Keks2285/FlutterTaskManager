@@ -57,6 +57,7 @@ class CreateTaskPage extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.fromLTRB(20, 50, 20, 20),
                     child: TextField(
+                      controller: descriptionController,
                         minLines: 2,
                         maxLines: 10,
                         cursorWidth: 2,
@@ -119,6 +120,15 @@ class CreateTaskPage extends StatelessWidget {
                     child: ElevatedButton(
                         child: Text("Добавить задачу"),
                         onPressed: () {
+
+
+                            BlocProvider.of<CreateTaskBloc>(context).add(
+                                  CreateTaskBlocEvent(
+                                      dateTime: state.dateTime,
+                                      description: descriptionController.text,
+                                      selectedtag: state.selectedtag));
+
+
                           //Navigator.pushNamed(context,"/SignUp");
                           //logging();
                         }),
@@ -128,6 +138,9 @@ class CreateTaskPage extends StatelessWidget {
                     child: ElevatedButton(
                         child: Text("Добавить уведомление"),
                         onPressed: () {
+
+
+
                           //Navigator.pushNamed(context,"/SignUp");
                           //logging();
                         }),

@@ -14,33 +14,35 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Task _$TaskFromJson(Map<String, dynamic> json) {
-  return _Task.fromJson(json);
+ToDoTask _$ToDoTaskFromJson(Map<String, dynamic> json) {
+  return _ToDoTask.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Task {
+mixin _$ToDoTask {
+  int get id => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get tag => throw _privateConstructorUsedError;
   DateTime? get dateTask => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TaskCopyWith<Task> get copyWith => throw _privateConstructorUsedError;
+  $ToDoTaskCopyWith<ToDoTask> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TaskCopyWith<$Res> {
-  factory $TaskCopyWith(Task value, $Res Function(Task) then) =
-      _$TaskCopyWithImpl<$Res, Task>;
+abstract class $ToDoTaskCopyWith<$Res> {
+  factory $ToDoTaskCopyWith(ToDoTask value, $Res Function(ToDoTask) then) =
+      _$ToDoTaskCopyWithImpl<$Res, ToDoTask>;
   @useResult
-  $Res call({String? description, String? tag, DateTime? dateTask});
+  $Res call({int id, String? description, String? tag, DateTime? dateTask});
 }
 
 /// @nodoc
-class _$TaskCopyWithImpl<$Res, $Val extends Task>
-    implements $TaskCopyWith<$Res> {
-  _$TaskCopyWithImpl(this._value, this._then);
+class _$ToDoTaskCopyWithImpl<$Res, $Val extends ToDoTask>
+    implements $ToDoTaskCopyWith<$Res> {
+  _$ToDoTaskCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -50,11 +52,16 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? description = freezed,
     Object? tag = freezed,
     Object? dateTask = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -72,28 +79,36 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
 }
 
 /// @nodoc
-abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
-  factory _$$_TaskCopyWith(_$_Task value, $Res Function(_$_Task) then) =
-      __$$_TaskCopyWithImpl<$Res>;
+abstract class _$$_ToDoTaskCopyWith<$Res> implements $ToDoTaskCopyWith<$Res> {
+  factory _$$_ToDoTaskCopyWith(
+          _$_ToDoTask value, $Res Function(_$_ToDoTask) then) =
+      __$$_ToDoTaskCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? description, String? tag, DateTime? dateTask});
+  $Res call({int id, String? description, String? tag, DateTime? dateTask});
 }
 
 /// @nodoc
-class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
-    implements _$$_TaskCopyWith<$Res> {
-  __$$_TaskCopyWithImpl(_$_Task _value, $Res Function(_$_Task) _then)
+class __$$_ToDoTaskCopyWithImpl<$Res>
+    extends _$ToDoTaskCopyWithImpl<$Res, _$_ToDoTask>
+    implements _$$_ToDoTaskCopyWith<$Res> {
+  __$$_ToDoTaskCopyWithImpl(
+      _$_ToDoTask _value, $Res Function(_$_ToDoTask) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? description = freezed,
     Object? tag = freezed,
     Object? dateTask = freezed,
   }) {
-    return _then(_$_Task(
+    return _then(_$_ToDoTask(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -112,12 +127,18 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Task implements _Task {
-  const _$_Task(
-      {required this.description, required this.tag, required this.dateTask});
+class _$_ToDoTask implements _ToDoTask {
+  const _$_ToDoTask(
+      {required this.id,
+      required this.description,
+      required this.tag,
+      required this.dateTask});
 
-  factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
+  factory _$_ToDoTask.fromJson(Map<String, dynamic> json) =>
+      _$$_ToDoTaskFromJson(json);
 
+  @override
+  final int id;
   @override
   final String? description;
   @override
@@ -127,14 +148,15 @@ class _$_Task implements _Task {
 
   @override
   String toString() {
-    return 'Task(description: $description, tag: $tag, dateTask: $dateTask)';
+    return 'ToDoTask(id: $id, description: $description, tag: $tag, dateTask: $dateTask)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Task &&
+            other is _$_ToDoTask &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.tag, tag) || other.tag == tag) &&
@@ -144,30 +166,33 @@ class _$_Task implements _Task {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, description, tag, dateTask);
+  int get hashCode => Object.hash(runtimeType, id, description, tag, dateTask);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TaskCopyWith<_$_Task> get copyWith =>
-      __$$_TaskCopyWithImpl<_$_Task>(this, _$identity);
+  _$$_ToDoTaskCopyWith<_$_ToDoTask> get copyWith =>
+      __$$_ToDoTaskCopyWithImpl<_$_ToDoTask>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TaskToJson(
+    return _$$_ToDoTaskToJson(
       this,
     );
   }
 }
 
-abstract class _Task implements Task {
-  const factory _Task(
-      {required final String? description,
+abstract class _ToDoTask implements ToDoTask {
+  const factory _ToDoTask(
+      {required final int id,
+      required final String? description,
       required final String? tag,
-      required final DateTime? dateTask}) = _$_Task;
+      required final DateTime? dateTask}) = _$_ToDoTask;
 
-  factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
+  factory _ToDoTask.fromJson(Map<String, dynamic> json) = _$_ToDoTask.fromJson;
 
+  @override
+  int get id;
   @override
   String? get description;
   @override
@@ -176,5 +201,6 @@ abstract class _Task implements Task {
   DateTime? get dateTask;
   @override
   @JsonKey(ignore: true)
-  _$$_TaskCopyWith<_$_Task> get copyWith => throw _privateConstructorUsedError;
+  _$$_ToDoTaskCopyWith<_$_ToDoTask> get copyWith =>
+      throw _privateConstructorUsedError;
 }

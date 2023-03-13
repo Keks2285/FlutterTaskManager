@@ -7,8 +7,9 @@ import '../../data/models/user.dart';
 import '../../data/repositories/auth_repo.dart';
 
 class RegBloc extends Bloc<RegBlocEvent, RegBlocState>{
-  RegBloc():super(RegInitState()){
-    on<RegBlocEvent>((RegBlocEvent event, Emitter<RegBlocState> emit) async{
+  RegBloc():super(RegInitState()){  
+    on<RegBlocEvent>(
+      (RegBlocEvent event, Emitter<RegBlocState> emit) async{
 
           User newUser=  User(
             email:event.email,
@@ -25,7 +26,7 @@ class RegBloc extends Bloc<RegBlocEvent, RegBlocState>{
 
             authResult.fold(
               (l) => emit(RegFailedState(message: l)),
-              (r) => emit(RegSuccesState(message: "Успешная авторизация"))
+              (r) => emit(RegSuccesState(message: "Успешная регистрация"))
             );
 
 

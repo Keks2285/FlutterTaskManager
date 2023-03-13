@@ -6,7 +6,7 @@ abstract class AppEnv{
   static const String auth = '/token';
   static const String user = '/user';
   static const String finance = '/finance';
-  static String userAccestoken='';
+  static String userRefreshtoken='';
   static String userEmail="";
 }
 

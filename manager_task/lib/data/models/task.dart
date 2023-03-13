@@ -1,18 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
+import 'dart:convert';
 part'task.freezed.dart';
 part 'task.g.dart';
 
 @freezed
-class Task with _$Task{
+class ToDoTask with _$ToDoTask{
 
-  const factory Task(
+  const factory ToDoTask(
   {
+    required int id,
     required String? description,
     required String? tag,
     required DateTime? dateTask
   }
-  ) = _Task;
+  ) = _ToDoTask;
 
-  factory Task.fromJson(Map<String,dynamic> json) => _$TaskFromJson(json);
+  factory ToDoTask.fromJson(Map<String,dynamic> json) => _$ToDoTaskFromJson(json);
 }
