@@ -9,7 +9,7 @@ class AuthRepo{
   Future<Either<String, User>> signIn(String email, String password, bool remember) async {
   var prefs = await SharedPreferences.getInstance();
     try{
-      var result = 
+      var result =
           await DioProvider().dio.post(AppEnv.auth,data: 
             User(
               email:email,
@@ -28,12 +28,12 @@ class AuthRepo{
             //prefs.clear();
             if(remember){
               prefs.setString("email", data.email);
-              prefs.setString("accesToken", data.accessToken!);
+              prefs.setString("refreshToken", data.refreshToken!);
               developer.log(data.email, name: "mylog");
-              developer.log(data.accessToken!, name: "mylog");
+              developer.log(data.refreshToken!, name: "mylog");
             }
               
-            AppEnv.userRefreshtoken=data.accessToken!;
+            AppEnv.userRefreshtoken=data.refreshToken!;
             AppEnv.userEmail=data.email;
               developer.log(AppEnv.userRefreshtoken, name: "mylog");
               developer.log(AppEnv.userEmail, name: "mylog");

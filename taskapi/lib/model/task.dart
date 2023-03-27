@@ -1,6 +1,5 @@
 
 
-import 'dart:ffi';
 
 import 'package:conduit/conduit.dart';
 import 'package:taskapi/model/user.dart';

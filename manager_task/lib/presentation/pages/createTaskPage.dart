@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 //import '../blocs/auth_bloc.dart';
 import '../blocs/create_task_bloc.dart';
@@ -10,7 +11,7 @@ class CreateTaskPage extends StatelessWidget {
   final descriptionController = TextEditingController();
   DateTime selectedDateTime = DateTime.now().add(Duration(days: 1));
   TimeOfDay selectedTime = TimeOfDay(hour: 0, minute: 0);
-
+  bool stop = false;
   List<String> dropdownMenuItems = [
     "#Учеба",
     "#Дом",
@@ -44,7 +45,23 @@ class CreateTaskPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => CreateTaskBloc(),
-        child: BlocBuilder<CreateTaskBloc, CreateTaskBlocState>(
+        child: BlocConsumer<CreateTaskBloc, CreateTaskBlocState>(
+
+            listener: (context, state) {
+          if (!state.succes && !stop &&state !=SelectedTagState  && state.message!="") {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Container(
+                      child: Text(state.message),
+                      height: 100,
+                      color: Colors.lightBlue);
+                });
+          }
+          stop = true;
+        },
+
+
             builder: (context, state) {
           return Scaffold(
               backgroundColor: Color.fromARGB(255, 3, 158, 162),
@@ -56,10 +73,10 @@ class CreateTaskPage extends StatelessWidget {
 
                   Container(
                     margin: EdgeInsets.fromLTRB(20, 50, 20, 20),
-                    child: TextField(
+                    child: TextFormField(
                       controller: descriptionController,
-                        minLines: 2,
-                        maxLines: 10,
+                      
+                        maxLines: 4,
                         cursorWidth: 2,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
@@ -86,7 +103,7 @@ class CreateTaskPage extends StatelessWidget {
                               _showPicker(context).then((value) {
                                 BlocProvider.of<CreateTaskBloc>(context).add(
                                     SelectedDateTimeEvent(
-                                        dateTime: selectedDateTime,
+                                        dateTime:    selectedDateTime,
                                         timeOfDay: selectedTime,
                                         selectedtag: state.selectedtag));
                               });
@@ -120,7 +137,7 @@ class CreateTaskPage extends StatelessWidget {
                     child: ElevatedButton(
                         child: Text("Добавить задачу"),
                         onPressed: () {
-
+                          
 
                             BlocProvider.of<CreateTaskBloc>(context).add(
                                   CreateTaskBlocEvent(
@@ -133,20 +150,31 @@ class CreateTaskPage extends StatelessWidget {
                           //logging();
                         }),
                   ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                    child: ElevatedButton(
-                        child: Text("Добавить уведомление"),
-                        onPressed: () {
+                  // Container(
+                  //   margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  //   child: ElevatedButton(
+                  //       child: Text("Добавить уведомление"),
+                  //       onPressed: () {
 
 
 
-                          //Navigator.pushNamed(context,"/SignUp");
-                          //logging();
-                        }),
-                  )
+                  //         //Navigator.pushNamed(context,"/SignUp");
+                  //         //logging();
+                  //       }),
+                  // )
                 ],
-              ));
+              ),
+              
+              floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/ListTasks", arguments: true);
+              },
+              backgroundColor: Colors.green,
+              child: const Icon(Icons.keyboard_return),
+            ),
+              
+              
+              );
         }));
   }
 }

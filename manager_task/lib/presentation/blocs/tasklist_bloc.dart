@@ -23,7 +23,7 @@ class TaskListBloc extends Bloc<TaskListBlocEvent, TaskListBlocState>{
 
     on<TaskListInitEvent>((TaskListInitEvent event, Emitter<TaskListBlocState> emit) async{
         var result = await TaskRepo()
-            .Load10Tasks(1);
+            .LoadTasks();
         
         result.fold(
           (l) {
@@ -33,6 +33,31 @@ class TaskListBloc extends Bloc<TaskListBlocEvent, TaskListBlocState>{
           emit(TaskListBlocInitState());
           } //тут изменить на другое состояние
         );
+    });
+
+
+
+     on<TaskDeleteEvent>((TaskDeleteEvent event, Emitter<TaskListBlocState> emit) async{
+        var result = await TaskRepo().Deletetask(event.id);
+        result.fold(
+          (l) {
+            emit(TaskListBlocConnectionErrorState(message: l));
+          },
+          (r) {
+          emit(TaskListBlocInitState());
+          } 
+        );
+    });
+
+
+
+
+    on<TaskSearchEvent>((TaskSearchEvent event, Emitter<TaskListBlocState> emit) async{
+
+            var searchedList=TaskRepo.allTasks.where((element) => element.description!.toLowerCase().contains(event.query.toLowerCase())||element.tag!.toLowerCase().contains(event.query.toLowerCase()));
+
+            emit(TaskListBlocSearchState(taskList: searchedList.toList()));
+          
     });
        
   }
@@ -52,8 +77,20 @@ abstract class TaskListBlocEvent{
 }
 
 
+class TaskDeleteEvent extends TaskListBlocEvent{
+  final int id;
+  List<ToDoTask> taskList = TaskRepo.allTasks;
+  TaskDeleteEvent({required this.id});
+}
+
+
 class TaskListInitEvent extends TaskListBlocEvent{
 
+}
+
+class TaskSearchEvent extends TaskListBlocEvent{
+  final String query;
+  TaskSearchEvent({required this.query});
 }
 
 class TaskListBlocSearcEvent extends TaskListBlocEvent{
@@ -65,15 +102,17 @@ class TaskListBlocInitState extends TaskListBlocState{
   String nameState="init";
   bool succes = true;
   List<ToDoTask> taskList = TaskRepo.allTasks;
+  List<ToDoTask> searchedTask=[];
 }
-
 
 class TaskListBlocSearchState extends TaskListBlocState{
   String nameState="search";
-  List<ToDoTask> taskList;
   bool succes = true;
+  final List<ToDoTask> taskList;
   TaskListBlocSearchState({required this.taskList});
 }
+
+
 
 
 class ConnectionErrorEvent extends TaskListBlocEvent{

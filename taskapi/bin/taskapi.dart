@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:conduit/conduit.dart' ;
+import 'package:conduit/conduit.dart';
 import 'package:taskapi/taskapi.dart';
 
 void main(List<String> arguments) async{

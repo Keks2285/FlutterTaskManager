@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manager_task/common/search.dart';
+import 'package:manager_task/data/models/task.dart';
 import 'package:manager_task/data/repositories/task_repo.dart';
 import '../../common/app_env.dart';
 import '../../data/models/user.dart';
@@ -9,71 +11,178 @@ import 'dart:developer' as developer;
 
 import '../blocs/tasklist_bloc.dart';
 
-class TaskListPage extends StatelessWidget {
-  bool isCanLoadMore = true;
-  bool stop =false;
-  int totalValueItems=0;
+class TaskListPage extends StatefulWidget {
+  @override
+  State<TaskListPage> createState() => _TaskListPageState();
+}
+
+class _TaskListPageState extends State<TaskListPage> {
+  bool stop = false;
+  //bool isRedirected =false;
+  bool _searchBoolean = false;
+  //int totalValueItems = 0;
   @override
   Widget build(BuildContext context) {
-    
     return BlocProvider(
       create: (context) => TaskListBloc(),
       child: BlocConsumer<TaskListBloc, TaskListBlocState>(
         listener: (context, state) {
-          if(!state.succes&& !stop){
-            
-              showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return Container(
-                  child: Text(state.message),
-                  height: 100, color: Colors.lightBlue);
-              });
+          if (!state.succes && !stop) {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Container(
+                      child: Text(state.message),
+                      height: 100,
+                      color: Colors.lightBlue);
+                });
           }
-          stop=true;
+          stop = true;
         },
         builder: (context, state) {
-          if(state.nameState=="init" &&!stop)
-             BlocProvider.of<TaskListBloc>(context).add(TaskListInitEvent());
-
+          if (state.nameState == "init" && !stop && ModalRoute.of(context)?.settings.arguments as bool)
+            BlocProvider.of<TaskListBloc>(context).add(TaskListInitEvent());
 
           return Scaffold(
             appBar: AppBar(
-              actions: [
-                IconButton(
-                    icon: const Icon(Icons.logout),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, "/SignIn",
-                          arguments: false);
-                    }),
-              ],
-              title: Text('ToDoList'),
-            ),
+                //title: _searchTextField(context),
+                //title:  _searchTextField(),
+                title:
+                    !_searchBoolean ? Text("ToDo") : _searchTextField(context),
+                actions: !_searchBoolean
+                    ? [
+                        IconButton(
+                            icon: Icon(Icons.search),
+                            onPressed: () {
+                              setState(() {
+                                _searchBoolean = true;
+                              });
+                            }),
+                        IconButton(
+                            icon: const Icon(Icons.logout),
+                            onPressed: () {
+                              TaskRepo.allTasks.clear();
+                              Navigator.pushReplacementNamed(context, "/SignIn",
+                                  arguments: false);
+                            })
+                      ]
+                    : [
+                        IconButton(
+                            icon: Icon(Icons.clear),
+                            onPressed: () {
+                              setState(() {
+                                _searchBoolean = false;
+                                BlocProvider.of<TaskListBloc>(context)
+                                    .add(TaskSearchEvent(query: ""));
+                              });
+                            })
+                      ]
+                // actions:  [
 
-            body: ListView.builder(
-              itemCount: state.taskList.length,
-              itemBuilder: (BuildContext context,int index) {
-                return Expanded(
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                    height: 30,
-                    color: Colors.amber,
-                    child: Text(
-                      "${state.taskList[index].description!.length<10?state.taskList[index].description:"${state.taskList[index].description!.substring(0,10)}..."} ${state.taskList[index].dateTask.toString().replaceAll(".000Z", "")}")
-                    )
-                );
-              } ,
+                //   IconButton(
+                //             icon: const Icon(Icons.logout),
+                //             onPressed: () {
+                //               TaskRepo.allTasks.clear();
+                //               Navigator.pushReplacementNamed(context, "/SignIn",
+                //                   arguments: false);
+                //             })
+                // ]
+                ),
+            body: 
+             Column(
+               children: [
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: state.taskList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Expanded(
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 151, 205, 255),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                    "${state.taskList[index].tag}\n${"${state.taskList[index].description!}\n"}\n ${state.taskList[index].dateTask.toString().replaceAll(".000Z", "")}"),
+                                IconButton(
+                                    onPressed: () {
+                                      BlocProvider.of<TaskListBloc>(context).add(
+                                          TaskDeleteEvent(
+                                              id: state.taskList[index].id));
+                                    },
+                                    icon: Icon(Icons.delete_forever_outlined))
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
 
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.pushNamed(context, "/CreateTask");
-              },
-              backgroundColor: Colors.green,
-              child: const Icon(Icons.add_box_outlined),
-            ),
+                      IconButton(
+                        onPressed: () {
+                        },
+                        icon: Icon(Icons.group, size: 40,),
+                        color: Colors.green,
+                      ),
+
+
+                    IconButton(
+                        onPressed: () {
+                          try {
+                            state.taskList.clear();
+                          } catch (e) {}
+                          Navigator.pushNamed(context, "/CreateTask");
+                        },
+                        icon: Icon(Icons.add_box_outlined, size: 40,),
+                        color: Colors.green,
+                      ),
+                    
+                  ],
+                )
+               ],
+             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _searchTextField(BuildContext context) {
+    return TextField(
+      onSubmitted: (value) {
+        BlocProvider.of<TaskListBloc>(context)
+            .add(TaskSearchEvent(query: value));
+      },
+      autofocus: true,
+      cursorColor: Colors.white,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+      ),
+      textInputAction: TextInputAction.search,
+      decoration: InputDecoration(
+        enabledBorder:
+            UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        focusedBorder:
+            UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        hintText: 'Search',
+        hintStyle: TextStyle(
+          color: Colors.white60,
+          fontSize: 20,
+        ),
       ),
     );
   }

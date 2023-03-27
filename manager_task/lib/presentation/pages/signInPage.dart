@@ -23,7 +23,7 @@ class SignInPage extends StatelessWidget {
   Future prefsInit()async{
          prefs = await SharedPreferences.getInstance();
         developer.log(prefs.getString("email")?? prefs.getString("email")??" ", name: "mylog");
-        developer.log(prefs.getString("userRefreshtoken")?? prefs.getString("accesToken")??" ", name: "mylog");
+        developer.log(prefs.getString("refreshToken")?? prefs.getString("refreshToken")??" ", name: "mylog");
     }
   
   //SignInPage(String s);
@@ -34,10 +34,10 @@ class SignInPage extends StatelessWidget {
 
 
       prefsInit().then((value)async{
-       if(prefs.containsKey('email')&&prefs.containsKey('accesToken') && isEntering){
+       if(prefs.containsKey('email')&&prefs.containsKey('refreshToken') && isEntering){
          AppEnv.userEmail=prefs.getString('email');
-         AppEnv.userRefreshtoken=prefs.getString('accesToken');
-         Navigator.pushReplacementNamed(context,"/ListTasks");
+         AppEnv.userRefreshtoken=prefs.getString('refreshToken');
+         Navigator.pushReplacementNamed(context,"/ListTasks", arguments: true); // /Mian
       }
     });
 
@@ -58,11 +58,12 @@ class SignInPage extends StatelessWidget {
         listener: (context, state) {
            if(state.succes)
             {
-              Navigator.pushReplacementNamed(context,"/ListTasks");
+              Navigator.pushReplacementNamed(context,"/ListTasks", arguments: true);
             }
         },
         builder: (context, state) {
           return  Scaffold(
+            resizeToAvoidBottomInset: false,
                     backgroundColor: Color.fromARGB(255, 3, 158, 162),
                     
                       body: Column(

@@ -11,10 +11,10 @@ class TaskRepo{
 
   static List<ToDoTask> allTasks=[];
 
-   Future<Either<String, int>> Load10Tasks( int page) async {
+   Future<Either<String, int>> LoadTasks() async {
      try{
         var result = await DioProvider().dio.get( 
-          '/task/${page}',
+          '/task',
           options: Options(headers: {
             "Content-Type": "application/json",
             "Authorization":
@@ -35,8 +35,15 @@ class TaskRepo{
                 dateTask: DateTime.parse(item["dateTask"])
               )
             );
-            allTasks.addAll(taskObjs);
+            
           });
+
+          // taskObjs.forEach((element) { 
+          //     if(!allTasks.contains(element.id));
+          //       allTasks.add(element);
+          // });
+
+          allTasks.addAll(taskObjs);
           return Right(taskObjs.length);
         }else{
           return Left(DefaultFailure().errorMessage);
@@ -60,14 +67,32 @@ class TaskRepo{
           }),
           data: task
         );
-      allTasks.add(task);
+     // allTasks.add(task);
       return Right(1);
     } on DioError catch (e){
       return Left(e.response?.data['message']??'Проблемы с сетью, проверьте подключение');
     }
   }
-  // Future<Either<String, String>> CreateTask(ToDoTask task) async {
+  
+  
 
+   Future<Either<String, int>> Deletetask( int id) async {
+    try{
+      var result = await DioProvider().dio.delete( 
+          '/task/${id}',
+          options: Options(headers: {
+            "Content-Type": "application/json",
+            "Authorization":
+                "Bearer ${AppEnv.userRefreshtoken}",
+          }),
+        );
+        allTasks.removeWhere((element) => element.id==id);
+        return Right(1);
 
-  // }
+    } on DioError catch (e){
+       
+
+         return Left(e.response?.data['message']??'Проблемы с сетью, проверьте подключение');
+    }
+   }
 }

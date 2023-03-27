@@ -1,7 +1,9 @@
 
 
 import 'package:conduit/conduit.dart';
+import 'package:taskapi/model/group.dart';
 import 'package:taskapi/model/task.dart';
+import 'package:taskapi/model/user_group.dart';
 
 class User extends ManagedObject<_User> implements _User {}
 
@@ -32,4 +34,6 @@ class _User {
   String? hashPassword;
 
   ManagedSet<Task>? taskList;
+  
+  ManagedSet<User_Group>? groupList;
 }
