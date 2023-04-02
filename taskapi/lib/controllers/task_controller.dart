@@ -43,6 +43,7 @@ class AppTaskConttolelr extends ResourceController {
        return Response.ok(
          ModelResponse(
           data:{
+            "id":id,
             "dateTask":taskData!.dateTask.toString(),
             "description":taskData.description
           } ,

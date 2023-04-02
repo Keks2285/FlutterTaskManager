@@ -167,6 +167,9 @@ class AppAuthContoler extends ResourceController {
     );
     final refreshClaimSet = JwtClaim(
       otherClaims: {'id': id}
+      //,
+      // maxAge: const Duration(days: 3),
+
     );
     final tokens = <String, String>{};
     tokens['access'] = issueJwtHS256(accessClaimSet, key);

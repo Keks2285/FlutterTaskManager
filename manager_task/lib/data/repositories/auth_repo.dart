@@ -12,6 +12,7 @@ class AuthRepo{
       var result =
           await DioProvider().dio.post(AppEnv.auth,data: 
             User(
+              id: 0,
               email:email,
               password:password, 
               firstname: "", 
@@ -27,6 +28,7 @@ class AuthRepo{
             }
             //prefs.clear();
             if(remember){
+              prefs.setInt("uId", data.id);
               prefs.setString("email", data.email);
               prefs.setString("refreshToken", data.refreshToken!);
               developer.log(data.email, name: "mylog");
@@ -35,8 +37,10 @@ class AuthRepo{
               
             AppEnv.userRefreshtoken=data.refreshToken!;
             AppEnv.userEmail=data.email;
+            AppEnv.userId=data.id;
               developer.log(AppEnv.userRefreshtoken, name: "mylog");
               developer.log(AppEnv.userEmail, name: "mylog");
+              developer.log(AppEnv.userId.toString(), name: "mylog");
             return Right(data);
           }else{
             return Left(DefaultFailure().errorMessage);

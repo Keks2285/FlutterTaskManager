@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:conduit/conduit.dart';
 import 'package:taskapi/model/user.dart';
+import 'controllers/groups_Controller.dart';
 import 'controllers/task_controller.dart';
 import 'model/task.dart';
 import 'model/group.dart';
@@ -30,10 +31,12 @@ late final ManagedContext managedContext;
   Controller get entryPoint => Router()
       ..route('token/[:refresh]')
         .link(() => AppAuthContoler(managedContext))
-      ..route('user/[:id]').link(AppTokenContoller.new)!
+      ..route('user').link(AppTokenContoller.new)!
         .link(() => AppUserConttolelr(managedContext))
       ..route('task/[:id]').link(AppTokenContoller.new)!
         .link(() => AppTaskConttolelr(managedContext))
+      ..route('groups/[:id]').link(AppTokenContoller.new)!
+        .link(() => AppGroupsConttolelr(managedContext))
      // ..route('page/[:page]').link(AppTokenContoller.new)!
      //   .link(() => AppTaskConttolelr(managedContext));
 ;

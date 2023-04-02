@@ -12,6 +12,7 @@ class RegBloc extends Bloc<RegBlocEvent, RegBlocState>{
       (RegBlocEvent event, Emitter<RegBlocState> emit) async{
 
           User newUser=  User(
+            id:0,
             email:event.email,
             password:event.password, 
             firstname: event.firstname, 

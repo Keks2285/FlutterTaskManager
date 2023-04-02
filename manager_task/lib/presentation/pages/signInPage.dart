@@ -22,6 +22,7 @@ class SignInPage extends StatelessWidget {
   
   Future prefsInit()async{
          prefs = await SharedPreferences.getInstance();
+        developer.log(prefs.getInt("uId").toString(), name: "uId");
         developer.log(prefs.getString("email")?? prefs.getString("email")??" ", name: "mylog");
         developer.log(prefs.getString("refreshToken")?? prefs.getString("refreshToken")??" ", name: "mylog");
     }
@@ -34,9 +35,10 @@ class SignInPage extends StatelessWidget {
 
 
       prefsInit().then((value)async{
-       if(prefs.containsKey('email')&&prefs.containsKey('refreshToken') && isEntering){
+       if(prefs.containsKey('email')&&prefs.containsKey('refreshToken') && isEntering&&prefs.containsKey('uId')){
          AppEnv.userEmail=prefs.getString('email');
          AppEnv.userRefreshtoken=prefs.getString('refreshToken');
+         AppEnv.userId=prefs.getInt('uId');
          Navigator.pushReplacementNamed(context,"/ListTasks", arguments: true); // /Mian
       }
     });

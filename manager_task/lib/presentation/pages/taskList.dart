@@ -72,8 +72,7 @@ class _TaskListPageState extends State<TaskListPage> {
                             onPressed: () {
                               setState(() {
                                 _searchBoolean = false;
-                                BlocProvider.of<TaskListBloc>(context)
-                                    .add(TaskSearchEvent(query: ""));
+                                BlocProvider.of<TaskListBloc>(context).add(TaskSearchEvent(query:""));
                               });
                             })
                       ]
@@ -105,21 +104,26 @@ class _TaskListPageState extends State<TaskListPage> {
                           ),
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                    "${state.taskList[index].tag}\n${"${state.taskList[index].description!}\n"}\n ${state.taskList[index].dateTask.toString().replaceAll(".000Z", "")}"),
-                                IconButton(
-                                    onPressed: () {
-                                      BlocProvider.of<TaskListBloc>(context).add(
-                                          TaskDeleteEvent(
-                                              id: state.taskList[index].id));
-                                    },
-                                    icon: Icon(Icons.delete_forever_outlined))
-                              ],
-                            ),
+                            
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                        "${state.taskList[index].tag}\n${"${state.taskList[index].description!}\n"}\n ${state.taskList[index].dateTask.toString().replaceAll(".000Z", "")}"),
+                                    IconButton(
+                                        onPressed: () {
+                                          BlocProvider.of<TaskListBloc>(context).add(
+                                              TaskDeleteEvent(
+                                                  id: state.taskList[index].id));
+                                        },
+                                        icon: Icon(Icons.delete_forever_outlined))
+                                  ],
+                                ),
+                              ),
+                            
                           ),
                         ),
                       );
@@ -133,6 +137,7 @@ class _TaskListPageState extends State<TaskListPage> {
 
                       IconButton(
                         onPressed: () {
+                          Navigator.pushNamed(context, "/Groups");
                         },
                         icon: Icon(Icons.group, size: 40,),
                         color: Colors.green,
@@ -144,6 +149,10 @@ class _TaskListPageState extends State<TaskListPage> {
                           try {
                             state.taskList.clear();
                           } catch (e) {}
+                          //TaskRepo.allTasks.clear();
+                          //BlocProvider.of<TaskListBloc>(context).add(TaskListInitEvent());
+                          //TaskRepo.allTasks.clear();
+                          //TaskListBlocState.taskList.clear();
                           Navigator.pushNamed(context, "/CreateTask");
                         },
                         icon: Icon(Icons.add_box_outlined, size: 40,),

@@ -8,6 +8,7 @@ abstract class AppEnv{
   static const String finance = '/finance';
   static String userRefreshtoken='';
   static String userEmail="";
+  static int userId=0;
 }
 
  class DioProvider{

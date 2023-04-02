@@ -13,7 +13,7 @@ class TaskListBloc extends Bloc<TaskListBlocEvent, TaskListBlocState>{
 
 
   
-  TaskListBloc():super(TaskListBlocInitState()){
+  TaskListBloc():super(TaskListBlocInitState(taskList:TaskRepo.allTasks)){
     on<TaskListBlocSearcEvent>(
       (TaskListBlocSearcEvent event, Emitter<TaskListBlocState> emit) async{
        
@@ -22,6 +22,7 @@ class TaskListBloc extends Bloc<TaskListBlocEvent, TaskListBlocState>{
     });
 
     on<TaskListInitEvent>((TaskListInitEvent event, Emitter<TaskListBlocState> emit) async{
+      TaskRepo.allTasks.clear();
         var result = await TaskRepo()
             .LoadTasks();
         
@@ -30,7 +31,7 @@ class TaskListBloc extends Bloc<TaskListBlocEvent, TaskListBlocState>{
             emit(TaskListBlocConnectionErrorState(message: l));
           },
           (r) {
-          emit(TaskListBlocInitState());
+          emit(TaskListBlocInitState(taskList:TaskRepo.allTasks));
           } //тут изменить на другое состояние
         );
     });
@@ -44,7 +45,7 @@ class TaskListBloc extends Bloc<TaskListBlocEvent, TaskListBlocState>{
             emit(TaskListBlocConnectionErrorState(message: l));
           },
           (r) {
-          emit(TaskListBlocInitState());
+          emit(TaskListBlocInitState(taskList:TaskRepo.allTasks));
           } 
         );
     });
@@ -56,8 +57,8 @@ class TaskListBloc extends Bloc<TaskListBlocEvent, TaskListBlocState>{
 
             var searchedList=TaskRepo.allTasks.where((element) => element.description!.toLowerCase().contains(event.query.toLowerCase())||element.tag!.toLowerCase().contains(event.query.toLowerCase()));
 
-            emit(TaskListBlocSearchState(taskList: searchedList.toList()));
-          
+            //emit(TaskListBlocSearchState(taskList: searchedList.toList()));
+           emit(TaskListBlocSearchState(taskList: searchedList.toList()));
     });
        
   }
@@ -101,8 +102,10 @@ class TaskListBlocSearcEvent extends TaskListBlocEvent{
 class TaskListBlocInitState extends TaskListBlocState{
   String nameState="init";
   bool succes = true;
-  List<ToDoTask> taskList = TaskRepo.allTasks;
+  @override
+  List<ToDoTask> taskList;
   List<ToDoTask> searchedTask=[];
+  TaskListBlocInitState({required this.taskList});
 }
 
 class TaskListBlocSearchState extends TaskListBlocState{

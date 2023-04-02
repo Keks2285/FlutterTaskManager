@@ -46,7 +46,7 @@ class TaskRepo{
           allTasks.addAll(taskObjs);
           return Right(taskObjs.length);
         }else{
-          return Left(DefaultFailure().errorMessage);
+          return Left("Время сессии истекло, необходимо войти повторно");
         }
      } on DioError catch (e){
         return Left(e.response?.data['message']??'Проблемы с сетью, проверьте подключение');

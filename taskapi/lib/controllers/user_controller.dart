@@ -34,44 +34,5 @@ class AppUserConttolelr extends ResourceController {
     }
   }
 
-
-
-
-
-
-
-
-  @Operation.get("id")
-  Future<Response> getGroups(
-    @Bind.header(HttpHeaders.authorizationHeader) String header,
-    @Bind.path("id") int uId,
-  ) async {
-    try {
-      // Получаем id пользователя
-      // Была создана новая функция ее нужно реализоваться для просмотра функции нажмите на картинку
-      final id = AppUtils.getIdFromHeader(header);
-      
-      final qGetGroupsUser= Query<User_Group>(managedContext)
-      ..where((el)=>el.user!.id).equalTo(id);
-
-      final List<User_Group> list = await qGetGroupsUser.fetch();
-
-      if (list.isEmpty)
-      {
-        return Response.notFound(body: ModelResponse(data: [], message: "Нет ни одной задачи"));
-      }
-      List<Group> grouplist=[];
-        Future.forEach(list, (element) async{
-           var qGetGroup = Query<Group>(managedContext)
-              ..where((el)=>el.id).equalTo(element.id);
-              var ele=await qGetGroup.fetchOne();
-          grouplist.add(ele!);
-        }).then((value) {
-          return Response.ok(grouplist);
-        });
-      return Response.ok(grouplist);
-    } catch (e) {
-      return AppResponse.serverError(e, message: 'Ошибка получения данных');
-    }
-  }
+  
 }
