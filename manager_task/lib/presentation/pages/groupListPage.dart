@@ -2,33 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manager_task/common/search.dart';
+import 'package:manager_task/data/models/group.dart';
 import 'package:manager_task/data/models/task.dart';
+import 'package:manager_task/data/repositories/groups_repo.dart';
 import 'package:manager_task/data/repositories/task_repo.dart';
 import '../../common/app_env.dart';
 import '../../data/models/user.dart';
 import 'package:manager_task/presentation/blocs/registration_bloc.dart';
 import 'dart:developer' as developer;
 
+import '../blocs/group_list_bloc.dart';
 import '../blocs/tasklist_bloc.dart';
 
 
-class GroupListPage extends StatefulWidget {
-  @override
-  State<GroupListPage> createState() => _GroupListPageState();
-}
-
-class _GroupListPageState extends State<GroupListPage> {
+class GroupListPage extends StatelessWidget {
   bool stop = false;
-  //bool isRedirected =false;
+
+  final namegroupController = TextEditingController();
+
   bool _searchBoolean = false;
+
   //int totalValueItems = 0;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TaskListBloc(),
-      child: BlocConsumer<TaskListBloc, TaskListBlocState>(
+      create: (context) => GroupListBloc(),
+      child: BlocConsumer<GroupListBloc, GroupListState>(
         listener: (context, state) {
-          if (!state.succes && !stop) {
+          if (!state.succes ) {
             showModalBottomSheet(
                 context: context,
                 builder: (context) {
@@ -42,7 +43,7 @@ class _GroupListPageState extends State<GroupListPage> {
         },
         builder: (context, state) {
           if (state.nameState == "init" && !stop && (ModalRoute.of(context)?.settings.arguments??true) as bool)
-            BlocProvider.of<TaskListBloc>(context).add(TaskListInitEvent());
+            BlocProvider.of<GroupListBloc>(context).add(GroupListInitEvent());
 
           return Scaffold(
             appBar: AppBar(
@@ -52,40 +53,70 @@ class _GroupListPageState extends State<GroupListPage> {
             body: 
              Column(
                children: [
-                //  Row(
-                //   crossAxisAlignment: CrossAxisAlignment.center,
-                //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //   children: [
+                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
 
-                //       IconButton(
-                //         onPressed: () {
-                //         },
-                //         icon: Icon(Icons.group, size: 40,),
-                //         color: Colors.green,
-                //       ),
+                     Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                        width: 220,
+                       child: TextFormField(
+                        controller: namegroupController,
+                       ),
+                     ),
+                     Column(
+                      children: [
+                        Container(
+                          width:150,
+                          child: ElevatedButton(
+                          style:ButtonStyle(
+                            
+                          ),
+                          onPressed: (){
+
+                            BlocProvider.of<GroupListBloc>(context).add(CreateGroupEvent(nameGroup:namegroupController.text));
+                              // GroupsRepo().createGroup(
+                              //   Group(
+                              //   id: 0, 
+                              //   namegroup: namegroupController.text,
+                              //   adminid: AppEnv.userId));
+                          }, 
+                          child: Text("Создать группу")),
+                        ),
+                        Container(
+                          width: 150,
+                          child: ElevatedButton(
+                            
+                          onPressed: (){
+                           BlocProvider.of<GroupListBloc>(context).add(JoinGroupEvent(nameGroup:namegroupController.text));
+                          }, 
+                          child: Text("Найти группу")),
+                        )
+                      ],
+                     )
 
 
-                //     IconButton(
-                //         onPressed: () {
-                //           try {
-                //             state.taskList.clear();
-                //           } catch (e) {}
-                //           //TaskRepo.allTasks.clear();
-                //           //BlocProvider.of<TaskListBloc>(context).add(TaskListInitEvent());
-                //           //TaskRepo.allTasks.clear();
-                //           //TaskListBlocState.taskList.clear();
-                //           Navigator.pushNamed(context, "/CreateTask");
-                //         },
-                //         icon: Icon(Icons.add_box_outlined, size: 40,),
-                //         color: Colors.green,
-                //       ),
+                    // IconButton(
+                    //     onPressed: () {
+                    //       try {
+                    //         state.groupList.clear();
+                    //       } catch (e) {}
+                    //       //TaskRepo.allTasks.clear();
+                    //       //BlocProvider.of<TaskListBloc>(context).add(TaskListInitEvent());
+                    //       //TaskRepo.allTasks.clear();
+                    //       //TaskListBlocState.taskList.clear();
+                    //       Navigator.pushNamed(context, "/CreateTask");
+                    //     },
+                    //     icon: Icon(Icons.add_box_outlined, size: 40,),
+                    //     color: Colors.green,
+                    //   ),
                     
-                //   ],
-                // ),
+                  ],
+                ),
                 Expanded(
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: state.taskList.length,
+                    itemCount: state.groupList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Expanded(
                         child: Container(
@@ -96,7 +127,7 @@ class _GroupListPageState extends State<GroupListPage> {
                           ),
                           child:   Container(
                             height: 60,
-                            child: GestureDetector(
+                            child: InkWell(
                             
                                     onTap: (){
                                        developer.log(AppEnv.userRefreshtoken, name: "mylog");
@@ -107,8 +138,7 @@ class _GroupListPageState extends State<GroupListPage> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          Text(
-                                              "Группа 2"),
+                                          Text(state.groupList[index].namegroup??""),
                                           IconButton(
                                               onPressed: () {
                                                 // BlocProvider.of<TaskListBloc>(context).add(

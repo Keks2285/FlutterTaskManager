@@ -1,6 +1,8 @@
 import 'package:conduit/conduit.dart';
 import 'package:taskapi/model/user.dart';
 
+import 'groupTask.dart';
+
 class Group extends ManagedObject<_Group> implements _Group {}
 
 
@@ -14,4 +16,5 @@ class _Group{
   int? adminid;
 
   ManagedSet<User>? userList;
+  ManagedSet<GroupTask>? groupTaskList;
 }

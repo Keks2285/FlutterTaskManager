@@ -30,11 +30,11 @@ class AppGroupsConttolelr extends ResourceController {
 
       final user = await query.fetchOne();
       if (user == null) {
-        return Response.notFound();
+       return AppResponse.serverError("", message: 'Ошибка получения данных');
       }
 //var a = user.groupList.to;
       if (user.groupList!.toList().isEmpty) {
-        return Response.notFound();
+       return AppResponse.serverError("", message: 'Нет ни одной группы');
       }
       List<Group> groupsOfuser = [];
       user.groupList!.forEach((element) {
@@ -52,6 +52,7 @@ class AppGroupsConttolelr extends ResourceController {
     @Bind.body() Group group,
   ) async {
     try{
+      //print(group);
       final uid = AppUtils.getIdFromHeader(header);
       final query = Query<User>(managedContext)
         ..where((t) => t.id).equalTo(uid)
@@ -114,32 +115,35 @@ class AppGroupsConttolelr extends ResourceController {
   Future<Response> joinGroup(
     @Bind.header(HttpHeaders.authorizationHeader) String header,
     //@Bind.body() Group group,
-    @Bind.path("id") int groupId
+    @Bind.path("id") String groupName
   ) async {
     try{
       final uid = AppUtils.getIdFromHeader(header);
 
 
-      final GroupData = await managedContext.fetchObjectWithID<Group>(groupId);
+      final GroupData = await (Query<Group>(managedContext)
+      ..where((el)=>el.nameGroup).equalTo(groupName)).fetchOne();
       final UserData = await managedContext.fetchObjectWithID<User>(uid);
 
       final qGetUser_Group= Query<User_Group>(managedContext)
       ..where((el)=>el.user!.id).equalTo(uid)
-      ..where((el) => el.group!.id).equalTo(groupId);
+      ..where((el) => el.group!.nameGroup).equalTo(groupName);
 
       final User_Group? listUser_Group = await qGetUser_Group.fetchOne();
       if(listUser_Group!=null){
-         return AppResponse.badrequest( message: 'Вы уже являетесть ачленом этой группы');
+         return AppResponse.badrequest( message: 'Вы уже являетесть членом этой группы');
       }
-
+      //late final int groupId;
       final userGroupData =await managedContext.transaction((transaction) async {
           final qCreategroup= Query<User_Group>(transaction)
           ..values.group=GroupData
           ..values.user=UserData;
 
-           await qCreategroup.insert();
+          await qCreategroup.insert();
+          //  groupId=createdGroup.id!;
       });
-      return Response.ok(userGroupData);
+     
+      return Response.ok(GroupData);
     }on QueryException catch(e){
       return Response.serverError(
 

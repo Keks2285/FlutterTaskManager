@@ -4,7 +4,7 @@ import 'package:conduit_core/conduit_core.dart';
 class Migration2 extends Migration { 
   @override
   Future upgrade() async {
-   		database.addColumn("_Task", SchemaColumn("isDeleted", ManagedPropertyType.boolean, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false));
+   
   }
   
   @override

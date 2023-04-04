@@ -106,7 +106,9 @@ class _TaskListPageState extends State<TaskListPage> {
                             scrollDirection: Axis.horizontal,
                             
                               child: Container(
-                                alignment: Alignment.center,
+                                constraints: BoxConstraints(
+                                        minWidth: MediaQuery.of(context).size.width-20,
+                                        ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,

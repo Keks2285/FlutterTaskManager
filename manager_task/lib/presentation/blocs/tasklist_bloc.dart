@@ -21,7 +21,8 @@ class TaskListBloc extends Bloc<TaskListBlocEvent, TaskListBlocState>{
       
     });
 
-    on<TaskListInitEvent>((TaskListInitEvent event, Emitter<TaskListBlocState> emit) async{
+    on<TaskListInitEvent>(
+      (TaskListInitEvent event, Emitter<TaskListBlocState> emit) async{
       TaskRepo.allTasks.clear();
         var result = await TaskRepo()
             .LoadTasks();
