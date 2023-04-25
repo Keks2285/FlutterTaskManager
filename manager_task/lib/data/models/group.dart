@@ -7,8 +7,8 @@ class Group with _$Group{
   const factory Group(
   {
     required int id,
-    required String? namegroup,
-    required int? adminid
+    required String namegroup,
+    required int adminid
   }
   ) = _Group;
 

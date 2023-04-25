@@ -19,8 +19,6 @@ class CreateTaskPage extends StatelessWidget {
     "#Семья",
     "#Другое",
   ];
-//String? selectedItem = "#Учеба";
-//CreateTaskPage({super.key});
   Future<void> _showPicker(BuildContext context) async {
     await showDatePicker(
                 context: context,
@@ -29,17 +27,12 @@ class CreateTaskPage extends StatelessWidget {
                 lastDate: DateTime.now().add(Duration(days: 1095)))
             .then((value) => {selectedDateTime = value ?? selectedDateTime})
             .then((value) => {
-// showTimePicker(context: context, initialTime: TimeOfDay.now()).
                 })
-// .then((value) => {
-// selectedTime = (value as TimeOfDay )
-// })
         ;
     selectedTime =
         await showTimePicker(context: context, initialTime: TimeOfDay.now()) ??
             selectedTime;
   }
-//final passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +77,6 @@ class CreateTaskPage extends StatelessWidget {
                         )),
                   ),
                   Container(
-//color: Colors.black,
-                      //margin: EdgeInsets.fromLTRB(20, 0, 0, 20),
-                      //padding: EdgeInsets.fromLTRB(15, 0, 5, 0),
                       width: 220,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -144,30 +134,14 @@ class CreateTaskPage extends StatelessWidget {
                                       dateTime: state.dateTime,
                                       description: descriptionController.text,
                                       selectedtag: state.selectedtag));
-
-
-                          //Navigator.pushNamed(context,"/SignUp");
-                          //logging();
                         }),
                   ),
-                  // Container(
-                  //   margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                  //   child: ElevatedButton(
-                  //       child: Text("Добавить уведомление"),
-                  //       onPressed: () {
-
-
-
-                  //         //Navigator.pushNamed(context,"/SignUp");
-                  //         //logging();
-                  //       }),
-                  // )
                 ],
               ),
               
               floatingActionButton: FloatingActionButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/ListTasks", arguments: true);
+                Navigator.pushNamed(context, "/ListTasks", );
               },
               backgroundColor: Colors.green,
               child: const Icon(Icons.keyboard_return),

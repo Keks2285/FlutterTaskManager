@@ -12,16 +12,11 @@ class AuthBloc extends Bloc<AuthBlocEvent,AuthBlocState>{
   
   AuthBloc():super(AuthInitState()){
      on<AuthLoginEvent>((AuthLoginEvent event, Emitter<AuthBlocState> emit) async  {
-      //emit(AuthInitState());
-      //try{
-        
-
-            var authResult = await AuthRepo().signIn(event.email, event.password, event.remember);
-
-            authResult.fold(
-              (l) => emit(AuthFailedState(message: l)),
-              (r) => emit(AuthSuccesState(message: "Успешная авторизация",user:r))
-            );
+        var authResult = await AuthRepo().signIn(event.email, event.password, event.remember);
+        authResult.fold(
+          (l) => emit(AuthFailedState(message: l)),
+          (r) => emit(AuthSuccesState(message: "Успешная авторизация",user:r))
+        );
      });
   }
 

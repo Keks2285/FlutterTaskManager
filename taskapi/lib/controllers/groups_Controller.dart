@@ -155,6 +155,50 @@ class AppGroupsConttolelr extends ResourceController {
 
   }
 
+
+
+  @Operation.delete('id')
+  Future<Response> deleteLeaveGroup(
+    @Bind.header(HttpHeaders.authorizationHeader) String header,
+    //@Bind.body() Group group,
+    @Bind.path("id") int groupId
+  ) async {
+    try{
+      final uid = AppUtils.getIdFromHeader(header);
+
+
+
+      final qGetUser_Group= Query<User_Group>(managedContext)
+      ..where((el)=>el.user!.id).equalTo(uid)
+      ..where((el) => el.group!.id).equalTo(groupId);
+      qGetUser_Group.delete();
+
+      final qDeleteGroup = await Query<Group>(managedContext)
+      ..where((el)=>el.id).equalTo(groupId);
+      final group=await qDeleteGroup.fetchOne();
+      
+      if(group!.adminid==uid)
+        qDeleteGroup.delete();
+
+
+
+     
+      return Response.ok(
+        ModelResponse(data: {
+          "message":"Группа удалена"
+        })
+      );
+    }on QueryException catch(e){
+      return Response.serverError(
+
+        body:  ModelResponse(message: e.message, error: "Not added")
+      
+      );
+    }
+    
+
+  }
+
 }
 
 

@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:conduit/conduit.dart';
 import 'package:taskapi/model/user.dart';
+import 'controllers/group_task_controller.dart';
 import 'controllers/groups_Controller.dart';
 import 'controllers/task_controller.dart';
+import 'controllers/person_attachments.dart';
 import 'model/task.dart';
 import 'model/group.dart';
 import 'model/user_group.dart';
@@ -38,6 +40,10 @@ late final ManagedContext managedContext;
         .link(() => AppTaskConttolelr(managedContext))
       ..route('groups/[:id]').link(AppTokenContoller.new)!
         .link(() => AppGroupsConttolelr(managedContext))
+      ..route('groupTasks/[:id]').link(AppTokenContoller.new)!
+        .link(() => AppGroupTaskControler(managedContext))
+      ..route('personAttachments')//.link(AppTokenContoller.new)!
+        .link(() => AppPersonAttachmentsController(managedContext))
      // ..route('page/[:page]').link(AppTokenContoller.new)!
      //   .link(() => AppTaskConttolelr(managedContext));
 ;

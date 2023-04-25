@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:manager_task/presentation/pages/createTaskPage.dart';
 import 'package:manager_task/presentation/pages/groupListPage.dart';
+import 'package:manager_task/presentation/pages/groupTasksPage.dart';
 import 'package:manager_task/presentation/pages/mainPage.dart';
 import 'package:manager_task/presentation/pages/signInPage.dart';
 import 'package:manager_task/presentation/pages/signUpPage.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         "/SignUp":  (context) => SignUpPage(),
         "/CreateTask":  (context) => CreateTaskPage(),
         "/Groups":(context) => GroupListPage(),
-        "/ListTasks":  (context) => TaskListPage()
+        "/ListTasks":  (context) => TaskListPage(),
+        "/GroupTasks":  (context) => GroupTasksPage()
         //SignIn.routeName: (context) => const SignIn()
       },
       home:  SignInPage(),

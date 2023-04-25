@@ -3,12 +3,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manager_task/common/search.dart';
 import 'package:manager_task/data/models/task.dart';
+import 'package:manager_task/data/repositories/groups_repo.dart';
 import 'package:manager_task/data/repositories/task_repo.dart';
 import '../../common/app_env.dart';
 import '../../data/models/user.dart';
 import 'package:manager_task/presentation/blocs/registration_bloc.dart';
 import 'dart:developer' as developer;
 
+import '../../data/repositories/groupTasks_repo.dart';
 import '../blocs/tasklist_bloc.dart';
 
 class TaskListPage extends StatefulWidget {
@@ -40,11 +42,12 @@ class _TaskListPageState extends State<TaskListPage> {
           stop = true;
         },
         builder: (context, state) {
-          if (state.nameState == "init" && !stop && ModalRoute.of(context)?.settings.arguments as bool)
+          if (state.nameState == "init" && !stop && (ModalRoute.of(context)?.settings.arguments??true )as bool)
             BlocProvider.of<TaskListBloc>(context).add(TaskListInitEvent());
 
           return Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
                 //title: _searchTextField(context),
                 //title:  _searchTextField(),
                 title:
@@ -62,8 +65,9 @@ class _TaskListPageState extends State<TaskListPage> {
                             icon: const Icon(Icons.logout),
                             onPressed: () {
                               TaskRepo.allTasks.clear();
-                              Navigator.pushReplacementNamed(context, "/SignIn",
-                                  arguments: false);
+                              GroupTaskRepo.allTasks.clear();
+                              GroupsRepo.allGroups.clear();
+                              Navigator.pushReplacementNamed(context, "/SignIn",arguments: false);
                             })
                       ]
                     : [

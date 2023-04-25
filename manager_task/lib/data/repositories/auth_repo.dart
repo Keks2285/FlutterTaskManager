@@ -6,7 +6,9 @@ import '../../common/app_env.dart';
 import '../../core/error/failure.dart';
 import '../models/user.dart';
 class AuthRepo{
-  Future<Either<String, User>> signIn(String email, String password, bool remember) async {
+
+  //Метод отвечающий за авторизацию пользователя и получение данных о нем
+  Future<Either<String, User>>  signIn(String email, String password, bool remember) async {
   var prefs = await SharedPreferences.getInstance();
     try{
       var result =
@@ -51,7 +53,7 @@ class AuthRepo{
       }
     }
 
-
+  //Метод отвечающий за регистрацию пользователя и сохранение его данных в БД
   Future<Either<String, User>> signUp(User user) async {
     try{
 

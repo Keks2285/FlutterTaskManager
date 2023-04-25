@@ -131,6 +131,7 @@ class SignInPage extends StatelessWidget {
                                 Text("Запомнить меня"),
                                 MyCheckBox(
                                   onChanged: () {
+                                  
                                     rememberMe=!rememberMe;
                                   },
                                 ),

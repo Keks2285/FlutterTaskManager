@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manager_task/common/search.dart';
 import 'package:manager_task/data/models/group.dart';
 import 'package:manager_task/data/models/task.dart';
+import 'package:manager_task/data/repositories/groupTasks_repo.dart';
 import 'package:manager_task/data/repositories/groups_repo.dart';
 import 'package:manager_task/data/repositories/task_repo.dart';
 import '../../common/app_env.dart';
@@ -13,6 +14,7 @@ import 'dart:developer' as developer;
 
 import '../blocs/group_list_bloc.dart';
 import '../blocs/tasklist_bloc.dart';
+import 'groupTasksPage.dart';
 
 
 class GroupListPage extends StatelessWidget {
@@ -129,23 +131,35 @@ class GroupListPage extends StatelessWidget {
                             height: 60,
                             child: InkWell(
                             
-                                    onTap: (){
-                                       developer.log(AppEnv.userRefreshtoken, name: "mylog");
+                                    onTap: (){ 
+                                        GroupTaskRepo.allTasks.clear();
+                                        Navigator.pushNamed(context, "/GroupTasks", arguments: ScreenArguments(groupID:state.groupList[index].id, groupName:state.groupList[index].namegroup,adminID: state.groupList[index].adminid) );
                                     },
                                     child: Container(
                                       
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,  
                                         children: [
                                           Text(state.groupList[index].namegroup??""),
-                                          IconButton(
+                                          if(GroupsRepo.allGroups[index].adminid==AppEnv.userId)...{
+                                            IconButton(
                                               onPressed: () {
-                                                // BlocProvider.of<TaskListBloc>(context).add(
-                                                //     TaskDeleteEvent(
-                                                //         id: state.taskList[index].id));
+                                                GroupsRepo().deleteLeaveGroup(GroupsRepo.allGroups[index].id);
+                                                 GroupsRepo.allGroups.remove(GroupsRepo.allGroups[index]);
+                                                  BlocProvider.of<GroupListBloc>(context).add(GroupListInitEvent());
+                                              },
+                                              icon: Icon(Icons.delete_forever))
+                                          }else...{
+                                            IconButton(
+                                              onPressed: () {
+                                               
+                                                GroupsRepo().deleteLeaveGroup(GroupsRepo.allGroups[index].id);
+                                                 GroupsRepo.allGroups.remove(GroupsRepo.allGroups[index]);
+                                                  BlocProvider.of<GroupListBloc>(context).add(GroupListInitEvent());
                                               },
                                               icon: Icon(Icons.exit_to_app))
+                                          }
                                         ],
                                       ),
                                     ),

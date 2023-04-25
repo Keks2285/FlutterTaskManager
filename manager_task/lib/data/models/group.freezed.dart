@@ -21,8 +21,8 @@ Group _$GroupFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Group {
   int get id => throw _privateConstructorUsedError;
-  String? get namegroup => throw _privateConstructorUsedError;
-  int? get adminid => throw _privateConstructorUsedError;
+  String get namegroup => throw _privateConstructorUsedError;
+  int get adminid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $GroupCopyWith<$Res> {
   factory $GroupCopyWith(Group value, $Res Function(Group) then) =
       _$GroupCopyWithImpl<$Res, Group>;
   @useResult
-  $Res call({int id, String? namegroup, int? adminid});
+  $Res call({int id, String namegroup, int adminid});
 }
 
 /// @nodoc
@@ -51,22 +51,22 @@ class _$GroupCopyWithImpl<$Res, $Val extends Group>
   @override
   $Res call({
     Object? id = null,
-    Object? namegroup = freezed,
-    Object? adminid = freezed,
+    Object? namegroup = null,
+    Object? adminid = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      namegroup: freezed == namegroup
+      namegroup: null == namegroup
           ? _value.namegroup
           : namegroup // ignore: cast_nullable_to_non_nullable
-              as String?,
-      adminid: freezed == adminid
+              as String,
+      adminid: null == adminid
           ? _value.adminid
           : adminid // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ) as $Val);
   }
 }
@@ -77,7 +77,7 @@ abstract class _$$_GroupCopyWith<$Res> implements $GroupCopyWith<$Res> {
       __$$_GroupCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? namegroup, int? adminid});
+  $Res call({int id, String namegroup, int adminid});
 }
 
 /// @nodoc
@@ -90,22 +90,22 @@ class __$$_GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res, _$_Group>
   @override
   $Res call({
     Object? id = null,
-    Object? namegroup = freezed,
-    Object? adminid = freezed,
+    Object? namegroup = null,
+    Object? adminid = null,
   }) {
     return _then(_$_Group(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      namegroup: freezed == namegroup
+      namegroup: null == namegroup
           ? _value.namegroup
           : namegroup // ignore: cast_nullable_to_non_nullable
-              as String?,
-      adminid: freezed == adminid
+              as String,
+      adminid: null == adminid
           ? _value.adminid
           : adminid // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -122,9 +122,9 @@ class _$_Group implements _Group {
   @override
   final int id;
   @override
-  final String? namegroup;
+  final String namegroup;
   @override
-  final int? adminid;
+  final int adminid;
 
   @override
   String toString() {
@@ -163,17 +163,17 @@ class _$_Group implements _Group {
 abstract class _Group implements Group {
   const factory _Group(
       {required final int id,
-      required final String? namegroup,
-      required final int? adminid}) = _$_Group;
+      required final String namegroup,
+      required final int adminid}) = _$_Group;
 
   factory _Group.fromJson(Map<String, dynamic> json) = _$_Group.fromJson;
 
   @override
   int get id;
   @override
-  String? get namegroup;
+  String get namegroup;
   @override
-  int? get adminid;
+  int get adminid;
   @override
   @JsonKey(ignore: true)
   _$$_GroupCopyWith<_$_Group> get copyWith =>

@@ -21,7 +21,7 @@ class SignUpPage extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             return Scaffold(
-             
+              resizeToAvoidBottomInset: false,
                 backgroundColor: Color.fromARGB(255, 3, 158, 162),
                 body: Form(
                   key: _formKey,
@@ -169,7 +169,7 @@ class SignUpPage extends StatelessWidget {
                 floatingActionButton: FloatingActionButton(
                     child: const Icon(Icons.arrow_back),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/SignIn");
+                      Navigator.pushNamed(context, "/SignIn", arguments: false);
                     }));
           },
         ));

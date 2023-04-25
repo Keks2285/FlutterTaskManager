@@ -1,27 +1,31 @@
 import 'dart:io';
 
 import 'package:conduit/conduit.dart';
+import 'package:taskapi/model/groupTask.dart';
 import 'package:taskapi/model/task.dart';
 
+import '../model/group.dart';
 import '../model/user.dart';
 import '../utils/app_responce.dart';
 import '../utils/app_utils.dart';
 import '../utils/model_responce.dart';
 
 
-class AppTaskConttolelr extends ResourceController {
-  AppTaskConttolelr(this.managedContext);
+class AppGroupTaskControler extends ResourceController {
+  AppGroupTaskControler(this.managedContext);
   final ManagedContext managedContext;
 
 
 
-   @Operation.post() Future<Response> createTask(
+   @Operation.post("id") Future<Response> createGroupTask(
     @Bind.header(HttpHeaders.authorizationHeader) String header,
-    @Bind.body() Task task) async {
+    @Bind.body() GroupTask task,
+    @Bind.path("id") int groupId,
+    ) async {
     try{
       final fUser = await managedContext.fetchObjectWithID<User>(AppUtils.getIdFromHeader(header));
-
-      if(task.dateTask==null || task.description=="" || task.tag==""){
+      final group = await managedContext.fetchObjectWithID<Group>(groupId);
+      if(task.dateTask==null || task.description=="" ){
         return Response.badRequest(
           body:
               ModelResponse(message: 'Все поля должны быть заполнены'),
@@ -29,17 +33,17 @@ class AppTaskConttolelr extends ResourceController {
       }
       late final int id;
       await managedContext.transaction((transaction) async {
-          final qCreateTask = Query<Task>(transaction)
+          final qCreateTask = Query<GroupTask>(transaction)
           ..values.dateTask = task.dateTask!.add(Duration(hours: 3)) //добавляю 3 часа
           ..values.description = task.description
-          ..values.tag=task.tag
-          ..values.user = fUser;
+          ..values.group=group;
+          
 
           final createdtask = await qCreateTask.insert();
           id=createdtask.id!;
       });
 
-        final taskData = await managedContext.fetchObjectWithID<Task>(id);
+        final taskData = await managedContext.fetchObjectWithID<GroupTask>(id);
        return Response.ok(
          ModelResponse(
           data:{
@@ -63,35 +67,16 @@ class AppTaskConttolelr extends ResourceController {
 
     @Operation.put('id') Future<Response> updateTask(
     @Bind.header(HttpHeaders.authorizationHeader) String header,
-    @Bind.body() Task task,
     @Bind.path("id") int taskId) async {
     try{
       final fUser = await managedContext.fetchObjectWithID<User>(AppUtils.getIdFromHeader(header));
-      final taskData = await managedContext.fetchObjectWithID<Task>(taskId);
+      final taskData = await managedContext.fetchObjectWithID<GroupTask>(taskId);
       final uId = AppUtils.getIdFromHeader(header) ;
-    
-      if(taskData?.id ==null){
-        return Response.notFound(body: {
-          "message":"запись не найдена"
-        });
-      }
-      if(taskData?.user?.id !=uId){
-        return Response.ok(
-          ModelResponse(error: "У вас нет доступа к этой записи")
-        );
-      }
-      if(task.dateTask==null || task.description=="" || task.tag==""){
-        return Response.badRequest(
-          body:
-              ModelResponse(message: 'Все поля должны быть заполнены'),
-        );
-      }
+      
       await managedContext.transaction((transaction) async {
-          final qUpdateTask = Query<Task>(transaction)
+          final qUpdateTask = Query<GroupTask>(transaction)
           ..where((x) => x.id).equalTo(taskId)
-          ..values.dateTask = task.dateTask!.add(Duration(hours: 3)) //добавляю 3 часа
-          ..values.description = task.description
-          ..values.tag=task.tag;
+          ..values.completedBy=fUser!.email;
           //..values.user = fUser;
 
           final createdtask = await qUpdateTask.update();
@@ -102,16 +87,17 @@ class AppTaskConttolelr extends ResourceController {
          ModelResponse(
           data:{
             "dateTask":taskData!.dateTask.toString(),
-            "description":taskData.description
+            "description":taskData.description,
+            "completedBy":fUser!.email
           } ,
-          message: 'Задача успешно обновлена',
+          message: 'Задача отмечена как выполненая',
         ),
       );
        
     }on QueryException catch(e){
       return Response.serverError(
 
-        body:  ModelResponse(message: e.message, error: "Not added")
+        body:  ModelResponse(message: e.message, error: "Not updated")
       
       );
     }
@@ -124,18 +110,19 @@ class AppTaskConttolelr extends ResourceController {
 
 
 
-   @Operation.get()
+   @Operation.get("id")
   Future<Response> getAllTasks(
     @Bind.header(HttpHeaders.authorizationHeader) String header,
+     @Bind.path("id") int groupId
   ) async {
     try {
       // Получаем id пользователя из header
       final uId = AppUtils.getIdFromHeader(header) ;
+      
+      final qGetTasks = Query<GroupTask>(managedContext)
+      ..where((el)=>el.group!.id).equalTo(groupId);
 
-      final qGetTasks = Query<Task>(managedContext)
-      ..where((el)=>el.user!.id).equalTo(uId);
-
-      final List<Task> list = await qGetTasks.fetch();
+      final List<GroupTask> list = await qGetTasks.fetch();
 
       if (list.isEmpty)
       {
@@ -149,33 +136,33 @@ class AppTaskConttolelr extends ResourceController {
   }
 
 
-     @Operation.get("id")
-  Future<Response> get10onPageTasks(
-    @Bind.header(HttpHeaders.authorizationHeader) String header,
-      @Bind.path("id") int pageNum
-  ) async {
-    try {
-      // Получаем id пользователя из header
-      final uId = AppUtils.getIdFromHeader(header) ;
+  //    @Operation.get("id")
+  // Future<Response> get10onPageTasks(
+  //   @Bind.header(HttpHeaders.authorizationHeader) String header,
+  //     @Bind.path("id") int pageNum
+  // ) async {
+  //   try {
+  //     // Получаем id пользователя из header
+  //     final uId = AppUtils.getIdFromHeader(header) ;
 
-      final qGetTasks = Query<Task>(managedContext)
-      ..where((el)=>el.user!.id).equalTo(uId)
-      ..fetchLimit=10
-      ..offset =(pageNum-1)*10;
+  //     final qGetTasks = Query<Task>(managedContext)
+  //     ..where((el)=>el.user!.id).equalTo(uId)
+  //     ..fetchLimit=10
+  //     ..offset =(pageNum-1)*10;
 
 
-      final List<Task> list = await qGetTasks.fetch();
+  //     final List<Task> list = await qGetTasks.fetch();
 
-      if (list.isEmpty)
-      {
-        return Response.notFound(body: ModelResponse(data: [], message: "Нет ни одной задачи"));
-      }
+  //     if (list.isEmpty)
+  //     {
+  //       return Response.notFound(body: ModelResponse(data: [], message: "Нет ни одной задачи"));
+  //     }
 
-      return Response.ok(list);
-    } catch (e) {
-      return AppResponse.serverError(e);
-    }
-  }
+  //     return Response.ok(list);
+  //   } catch (e) {
+  //     return AppResponse.serverError(e);
+  //   }
+  // }
 
 
 
@@ -191,16 +178,11 @@ class AppTaskConttolelr extends ResourceController {
     try {
       final uId = AppUtils.getIdFromHeader(header) ;
       // Получаем id пользователя из header
-      final taskData = await managedContext.fetchObjectWithID<Task>(taskId);
+      final taskData = await managedContext.fetchObjectWithID<GroupTask>(taskId);
       if(taskData?.id ==null){
         return Response.notFound(body: {
           "message":"запись не найдена"
         });
-      }
-      if(taskData?.user?.id !=uId){
-        return Response.ok(
-          ModelResponse(error: "У вас нет доступа к этой записи")
-        );
       }
 
       //  final qDeleteTask = Query<Task>(managedContext)
@@ -209,7 +191,7 @@ class AppTaskConttolelr extends ResourceController {
       //   qDeleteTask.values.isDeleted=true;
       //   qDeleteTask.update();
       // }else{
-        final qDeleteTask = Query<Task>(managedContext)
+        final qDeleteTask = Query<GroupTask>(managedContext)
       ..where((el)=>el.id).equalTo(taskId);
       qDeleteTask.delete();
       //}

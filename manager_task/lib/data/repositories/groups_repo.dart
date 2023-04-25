@@ -37,6 +37,26 @@ class GroupsRepo{
 
 
 
+
+  Future<Either<String, int>> deleteLeaveGroup(int groupID) async{
+    try{
+      var result = await DioProvider().dio.delete( 
+          '/groups/${groupID}',
+          options: Options(headers: {
+            "Content-Type": "application/json",
+            "Authorization":
+                "Bearer ${AppEnv.userRefreshtoken}",
+          })
+        );
+     return Right(1);
+    }on DioError catch(e){
+      return Left(e.response?.data['message']??'Проблемы с сетью, проверьте подключение');
+    }
+
+  }
+
+
+
   Future<Either<String, int>> createGroup(Group group) async{
     try{
       var result = await DioProvider().dio.put( 
@@ -58,6 +78,7 @@ class GroupsRepo{
               adminid: result.data["adminid"]));
      return Right(1);
     }on DioError catch(e){
+      if(e.response?.data['message']=='entity_already_exists')return Left('Группа с таким названием уже существует');
       return Left(e.response?.data['message']??'Проблемы с сетью, проверьте подключение');
     }
 
@@ -83,6 +104,9 @@ class GroupsRepo{
               adminid: result.data["adminid"]));
      return Right(1);
     }on DioError catch(e){
+
+      if(e.response?.data['message']=='non_null_violation')return Left('Такой группы не существует');
+
       return Left(e.response?.data['message']??'Проблемы с сетью, проверьте подключение');
     }
 
