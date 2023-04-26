@@ -18,7 +18,7 @@ class GroupTasksBloc extends Bloc<GroupTasksBlocEvent, GroupTasksBlocState>{
   
   GroupTasksBloc():super(GroupTasksBlocInitState(taskList:GroupTaskRepo.allTasks, 
             date: DateFormat("yyyy-MM-dd").format(DateTime.now().add(Duration(days: 1))),
-            Time: TimeOfDay.now().hour.toString()+":"+TimeOfDay.now().minute.toString()+":00",
+            Time: TimeOfDay.now().hour.toString().padLeft(2, '0')+":"+TimeOfDay.now().minute.toString().padLeft(2, '0')+":00",
             description: ""))
             {
       on<GroupTasksBlocSearcEvent>(
@@ -41,7 +41,7 @@ class GroupTasksBloc extends Bloc<GroupTasksBlocEvent, GroupTasksBlocState>{
           emit(GroupTasksBlocInitState(
             taskList:GroupTaskRepo.allTasks, 
             date: DateFormat("yyyy-MM-dd").format(DateTime.now().add(Duration(days: 1))),
-            Time: TimeOfDay.now().hour.toString()+":"+TimeOfDay.now().minute.toString()+":00",
+            Time: TimeOfDay.now().hour.toString().padLeft(2, '0')+":"+TimeOfDay.now().minute.toString().padLeft(2, '0')+":00",
             description: ""
             ));
           } //тут изменить на другое состояние
@@ -57,7 +57,7 @@ class GroupTasksBloc extends Bloc<GroupTasksBlocEvent, GroupTasksBlocState>{
             emit(GroupTasksBlocConnectionErrorState(message: l));
           },
           (r) {
-          emit(GroupTasksBlocInitState(taskList:GroupTaskRepo.allTasks, Time: event.Time, date: event.Time, description: event.description));
+          emit(GroupTasksBlocInitState(taskList:GroupTaskRepo.allTasks, Time: event.Time, date: event.date, description: event.description));
           } 
         );
     });

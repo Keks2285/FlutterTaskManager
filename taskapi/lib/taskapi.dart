@@ -42,8 +42,6 @@ late final ManagedContext managedContext;
         .link(() => AppGroupsConttolelr(managedContext))
       ..route('groupTasks/[:id]').link(AppTokenContoller.new)!
         .link(() => AppGroupTaskControler(managedContext))
-      ..route('personAttachments')//.link(AppTokenContoller.new)!
-        .link(() => AppPersonAttachmentsController(managedContext))
      // ..route('page/[:page]').link(AppTokenContoller.new)!
      //   .link(() => AppTaskConttolelr(managedContext));
 ;

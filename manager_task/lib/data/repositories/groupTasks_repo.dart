@@ -71,7 +71,14 @@ class GroupTaskRepo{
             "dateTask":dataTask["dateTask"]
           }
         );
-      allTasks.add(GroupTask(completedBy: "-", dateTask: result.data["dateTask"], id:result.data["id"], description: result.data["description"]));
+        //var a =result.data["data"]["dateTask"];
+        //var b =result.data["data"]["id"];
+        //var c =result.data["data"]["description"];
+      allTasks.add(
+        GroupTask(completedBy: "-", 
+        dateTask: DateTime.parse(result.data["data"]["dateTask"]), 
+        id:result.data["data"]["id"],
+        description: result.data["data"]["description"]));
       return Right(1);
     } on DioError catch (e){
       return Left(e.response?.data['message']??'Проблемы с сетью, проверьте подключение');

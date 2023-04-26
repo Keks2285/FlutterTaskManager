@@ -38,7 +38,7 @@ void main() {
     );
     expect(uID, 1);
 
-     result = await AuthRepo().signIn("example2@gmail.com", "Pass1!", false);
+     result = await AuthRepo().signIn("pochta@mail.ru", "Client!122", false);
      uID=0;
     result.fold(
       (l) => {},
@@ -47,7 +47,7 @@ void main() {
     expect(uID, 3);
 
 
-     result = await AuthRepo().signIn("example444@gmail.com", "Pass1!", false);
+     result = await AuthRepo().signIn("admin@gmail.ru", "AuthoBD!122", false);
      String errorMessage="";
     result.fold(
       (l) => {errorMessage=l},

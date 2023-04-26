@@ -41,7 +41,7 @@ class _GroupTasksPageState extends State<GroupTasksPage> {
         (ModalRoute.of(context)?.settings.arguments) as ScreenArguments;
     final descriptionController = TextEditingController();
     DateTime selectedDateTime = DateTime.now().add(Duration(days: 1));
-    TimeOfDay selectedTime = TimeOfDay(hour: 0, minute: 0);
+    TimeOfDay selectedTime = TimeOfDay(hour: TimeOfDay.now().hour, minute: TimeOfDay.now().minute);
 
     Future<void> _showPicker(BuildContext context) async {
       await showDatePicker(
@@ -164,7 +164,7 @@ class _GroupTasksPageState extends State<GroupTasksPage> {
                               BlocProvider.of<GroupTasksBloc>(context).add(
                                   SelectedDateTimeEvent(
                                       date:    DateFormat("yyyy-MM-dd").format(selectedDateTime),
-                                      Time: selectedTime.hour.toString()+":"+selectedTime.minute.toString()+":00",
+                                      Time: selectedTime.hour.toString().padLeft(2, '0')+":"+selectedTime.minute.toString().padLeft(2, '0')+":00",
                                       description: descriptionController.text));
                           });
                         },
@@ -221,7 +221,7 @@ class _GroupTasksPageState extends State<GroupTasksPage> {
                                               .add(GroupTasksDeleteEvent(
                                                   id: state.taskList[index].id!,
                                                   date: DateFormat("yyyy-MM-dd").format(selectedDateTime),
-                                                  Time: selectedTime.hour.toString()+":"+selectedTime.minute.toString()+":00",
+                                                  Time: selectedTime.hour.toString().padLeft(2, '0')+":"+selectedTime.minute.toString().padLeft(2, '0')+":00",
                                                   description: descriptionController.text));
                                         },
                                         icon:

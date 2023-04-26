@@ -1,15 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:manager_task/data/repositories/auth_repo.dart';
-
-import '../../common/app_env.dart';
 import '../../data/models/user.dart';
 
 
 class AuthBloc extends Bloc<AuthBlocEvent,AuthBlocState>{
-  
-  
   AuthBloc():super(AuthInitState()){
      on<AuthLoginEvent>((AuthLoginEvent event, Emitter<AuthBlocState> emit) async  {
         var authResult = await AuthRepo().signIn(event.email, event.password, event.remember);
@@ -19,12 +14,6 @@ class AuthBloc extends Bloc<AuthBlocEvent,AuthBlocState>{
         );
      });
   }
-
-
-
-
-
-
 }
 
 
