@@ -16,7 +16,8 @@ class GroupTasksBloc extends Bloc<GroupTasksBlocEvent, GroupTasksBlocState>{
 
 
   
-  GroupTasksBloc():super(GroupTasksBlocInitState(taskList:GroupTaskRepo.allTasks, 
+  GroupTasksBloc():super(GroupTasksBlocInitState(
+    taskList:GroupTaskRepo.allTasks, 
             date: DateFormat("yyyy-MM-dd").format(DateTime.now().add(Duration(days: 1))),
             Time: TimeOfDay.now().hour.toString().padLeft(2, '0')+":"+TimeOfDay.now().minute.toString().padLeft(2, '0')+":00",
             description: ""))

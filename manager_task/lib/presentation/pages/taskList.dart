@@ -3,7 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manager_task/common/search.dart';
 import 'package:manager_task/data/models/task.dart';
+import 'package:manager_task/core/usecase/firestore_person_attacments.dart';
 import 'package:manager_task/data/repositories/groups_repo.dart';
+import 'package:manager_task/data/repositories/personAttacment_repo.dart';
 import 'package:manager_task/data/repositories/task_repo.dart';
 import '../../common/app_env.dart';
 import '../../data/models/user.dart';
@@ -119,7 +121,15 @@ class _TaskListPageState extends State<TaskListPage> {
                                   children: [
                                     Text(
                                         "${state.taskList[index].tag}\n${"${state.taskList[index].description!}\n"}\n ${state.taskList[index].dateTask.toString().replaceAll(".000Z", "")}"),
+                                    
                                     IconButton(
+                                        onPressed: () {
+                                          
+                                          Navigator.pushNamed(context, "/PersonAtachments");
+                                          AppEnv.selectedPersonalTask=state.taskList[index].id.toString();
+                                        },
+                                        icon: Icon(Icons.attach_file)),
+                                        IconButton(
                                         onPressed: () {
                                           BlocProvider.of<TaskListBloc>(context).add(
                                               TaskDeleteEvent(
@@ -164,6 +174,20 @@ class _TaskListPageState extends State<TaskListPage> {
                         icon: Icon(Icons.add_box_outlined, size: 40,),
                         color: Colors.green,
                       ),
+                      IconButton(
+                        onPressed: () {
+                          try {
+                            state.taskList.clear();
+                          } catch (e) {}
+                          //TaskRepo.allTasks.clear();
+                          //BlocProvider.of<TaskListBloc>(context).add(TaskListInitEvent());
+                          //TaskRepo.allTasks.clear();
+                          //TaskListBlocState.taskList.clear();
+                          Navigator.pushNamed(context, "/Notifies");
+                        },
+                        icon: Icon(Icons.notification_add, size: 40,),
+                        color: Colors.green,
+                      )
                     
                   ],
                 )

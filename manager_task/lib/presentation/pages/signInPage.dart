@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manager_task/common/app_env.dart';
 import 'package:manager_task/presentation/customWidgets/customCheckbox.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/services/notify_service.dart';
 import '../../data/models/user.dart';
 import 'package:manager_task/presentation/blocs/auth_bloc.dart';
 import 'dart:developer' as developer;
@@ -106,7 +107,9 @@ class SignInPage extends StatelessWidget {
                                           child: Text("Войти")
                                           ),
                                         onPressed: () async {
+                                          NotificationService().createNotify(DateTime.now().add(Duration(minutes: 2)), "title", "Уведомление с указанным временем");
                                           BlocProvider.of<AuthBloc>(context).add(AuthLoginEvent(password: passController.text, email: emailController.text, remember: rememberMe));
+                                          
                                         },
                                       )),
                                       

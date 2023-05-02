@@ -1,4 +1,5 @@
 import 'package:conduit/conduit.dart';
+import 'package:taskapi/model/comment.dart';
 import 'package:taskapi/model/group.dart';
 
 class GroupTask extends ManagedObject<_GroupTask> implements _GroupTask {}
@@ -18,4 +19,6 @@ class _GroupTask {
 
   @Relate(#groupTaskList, isRequired: true, onDelete: DeleteRule.cascade)
   Group? group;
+
+    ManagedSet<Comment>? commentList;
 }

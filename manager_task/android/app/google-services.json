@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "434869212348",
+    "project_id": "taskmanager-fce3b",
+    "storage_bucket": "taskmanager-fce3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434869212348:android:8e5e58ec709cd4144cacb9",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_9"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "434869212348-bgrj19h437g2j59lr9dc4pvrvi7gq4h5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKexOvQhqkFvCrV_GOJrNXqRGj3gv5XDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "434869212348-bgrj19h437g2j59lr9dc4pvrvi7gq4h5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
