@@ -66,7 +66,17 @@ class GroupListPage extends StatelessWidget {
                             
                           ),
                           onPressed: (){
-
+                               if (namegroupController.text.length <= 1) {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) {
+                                        return Container(
+                                            child: Text("Назвние группы не может быть пустым"),
+                                            height: 100,
+                                            color: Colors.lightBlue);
+                                      });
+                                      return;
+                                }
                             BlocProvider.of<GroupListBloc>(context).add(CreateGroupEvent(nameGroup:namegroupController.text));
                               // GroupsRepo().createGroup(
                               //   Group(

@@ -16,7 +16,6 @@ import '../blocs/group_list_bloc.dart';
 import '../blocs/tasklist_bloc.dart';
 import 'groupTasksPage.dart';
 
-
 class GroupListPage extends StatelessWidget {
   bool stop = false;
 
@@ -31,7 +30,7 @@ class GroupListPage extends StatelessWidget {
       create: (context) => GroupListBloc(),
       child: BlocConsumer<GroupListBloc, GroupListState>(
         listener: (context, state) {
-          if (!state.succes ) {
+          if (!state.succes) {
             showModalBottomSheet(
                 context: context,
                 builder: (context) {
@@ -44,59 +43,68 @@ class GroupListPage extends StatelessWidget {
           stop = true;
         },
         builder: (context, state) {
-          if (state.nameState == "init" && !stop && (ModalRoute.of(context)?.settings.arguments??true) as bool)
+          if (state.nameState == "init" &&
+              !stop &&
+              (ModalRoute.of(context)?.settings.arguments ?? true) as bool)
             BlocProvider.of<GroupListBloc>(context).add(GroupListInitEvent());
 
           return Scaffold(
             appBar: AppBar(
               title: Text("My Groups"),
             ),
-          
-            body: 
-             Column(
-               children: [
-                 Row(
+            body: Column(
+              children: [
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-
-                     Container(
+                    Container(
                       margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
-                        width: 220,
-                       child: TextFormField(
+                      width: 220,
+                      child: TextFormField(
                         controller: namegroupController,
-                       ),
-                     ),
-                     Column(
+                      ),
+                    ),
+                    Column(
                       children: [
                         Container(
-                          width:150,
+                          width: 150,
                           child: ElevatedButton(
-                          style:ButtonStyle(
-                            
-                          ),
-                          onPressed: (){
-
-                            BlocProvider.of<GroupListBloc>(context).add(CreateGroupEvent(nameGroup:namegroupController.text));
-                              // GroupsRepo().createGroup(
-                              //   Group(
-                              //   id: 0, 
-                              //   namegroup: namegroupController.text,
-                              //   adminid: AppEnv.userId));
-                          }, 
-                          child: Text("Создать группу")),
+                              style: ButtonStyle(),
+                              onPressed: () {
+                                if (namegroupController.text.length <= 1) {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) {
+                                        return Container(
+                                            child: Text("Назвние группы не может быть пустым"),
+                                            height: 100,
+                                            color: Colors.lightBlue);
+                                      });
+                                      return;
+                                }
+                                BlocProvider.of<GroupListBloc>(context).add(
+                                    CreateGroupEvent(
+                                        nameGroup: namegroupController.text));
+                                // GroupsRepo().createGroup(
+                                //   Group(
+                                //   id: 0,
+                                //   namegroup: namegroupController.text,
+                                //   adminid: AppEnv.userId));
+                              },
+                              child: Text("Создать группу")),
                         ),
                         Container(
                           width: 150,
                           child: ElevatedButton(
-                            
-                          onPressed: (){
-                           BlocProvider.of<GroupListBloc>(context).add(JoinGroupEvent(nameGroup:namegroupController.text));
-                          }, 
-                          child: Text("Найти группу")),
+                              onPressed: () {
+                                BlocProvider.of<GroupListBloc>(context).add(
+                                    JoinGroupEvent(
+                                        nameGroup: namegroupController.text));
+                              },
+                              child: Text("Найти группу")),
                         )
                       ],
-                     )
-
+                    )
 
                     // IconButton(
                     //     onPressed: () {
@@ -112,7 +120,6 @@ class GroupListPage extends StatelessWidget {
                     //     icon: Icon(Icons.add_box_outlined, size: 40,),
                     //     color: Colors.green,
                     //   ),
-                    
                   ],
                 ),
                 Expanded(
@@ -124,56 +131,68 @@ class GroupListPage extends StatelessWidget {
                         child: Container(
                           margin: EdgeInsets.fromLTRB(10, 4, 10, 0),
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 173, 187, 201),
-                            border: Border.all(color: Colors.black12, width: 2)
-                          ),
-                          child:   Container(
+                              color: Color.fromARGB(255, 173, 187, 201),
+                              border:
+                                  Border.all(color: Colors.black12, width: 2)),
+                          child: Container(
                             height: 60,
                             child: InkWell(
-                            
-                                    onTap: (){ 
-                                        GroupTaskRepo.allTasks.clear();
-                                        Navigator.pushNamed(context, "/GroupTasks", arguments: ScreenArguments(groupID:state.groupList[index].id, groupName:state.groupList[index].namegroup,adminID: state.groupList[index].adminid) );
-                                    },
-                                    child: Container(
-                                      
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.center,  
-                                        children: [
-                                          Text(state.groupList[index].namegroup??""),
-                                          if(GroupsRepo.allGroups[index].adminid==AppEnv.userId)...{
-                                            IconButton(
-                                              onPressed: () {
-                                                GroupsRepo().deleteLeaveGroup(GroupsRepo.allGroups[index].id);
-                                                 GroupsRepo.allGroups.remove(GroupsRepo.allGroups[index]);
-                                                  BlocProvider.of<GroupListBloc>(context).add(GroupListInitEvent());
-                                              },
-                                              icon: Icon(Icons.delete_forever))
-                                          }else...{
-                                            IconButton(
-                                              onPressed: () {
-                                               
-                                                GroupsRepo().deleteLeaveGroup(GroupsRepo.allGroups[index].id);
-                                                 GroupsRepo.allGroups.remove(GroupsRepo.allGroups[index]);
-                                                  BlocProvider.of<GroupListBloc>(context).add(GroupListInitEvent());
-                                              },
-                                              icon: Icon(Icons.exit_to_app))
-                                          }
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                              onTap: () {
+                                GroupTaskRepo.allTasks.clear();
+                                Navigator.pushNamed(context, "/GroupTasks",
+                                    arguments: ScreenArguments(
+                                        groupID: state.groupList[index].id,
+                                        groupName:
+                                            state.groupList[index].namegroup,
+                                        adminID:
+                                            state.groupList[index].adminid));
+                              },
+                              child: Container(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                        state.groupList[index].namegroup ?? ""),
+                                    if (GroupsRepo.allGroups[index].adminid ==
+                                        AppEnv.userId) ...{
+                                      IconButton(
+                                          onPressed: () {
+                                            GroupsRepo().deleteLeaveGroup(
+                                                GroupsRepo.allGroups[index].id);
+                                            GroupsRepo.allGroups.remove(
+                                                GroupsRepo.allGroups[index]);
+                                            BlocProvider.of<GroupListBloc>(
+                                                    context)
+                                                .add(GroupListInitEvent());
+                                          },
+                                          icon: Icon(Icons.delete_forever))
+                                    } else ...{
+                                      IconButton(
+                                          onPressed: () {
+                                            GroupsRepo().deleteLeaveGroup(
+                                                GroupsRepo.allGroups[index].id);
+                                            GroupsRepo.allGroups.remove(
+                                                GroupsRepo.allGroups[index]);
+                                            BlocProvider.of<GroupListBloc>(
+                                                    context)
+                                                .add(GroupListInitEvent());
+                                          },
+                                          icon: Icon(Icons.exit_to_app))
+                                    }
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                              
                         ),
                       );
                     },
                   ),
                 ),
-               
-               ],
-             ),
+              ],
+            ),
           );
         },
       ),

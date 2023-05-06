@@ -10,6 +10,7 @@ abstract class AppEnv{
   static String userEmail="";
   static int userId=0;
   static String selectedPersonalTask="";
+  static String selectedGroupTask="";
 }
 
  class DioProvider{

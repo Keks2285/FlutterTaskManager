@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:manager_task/presentation/pages/createTaskPage.dart';
+import 'package:manager_task/presentation/pages/groupAttachmentListPage.dart';
 import 'package:manager_task/presentation/pages/groupListPage.dart';
 import 'package:manager_task/presentation/pages/groupTasksPage.dart';
 import 'package:manager_task/presentation/pages/mainPage.dart';
@@ -15,6 +16,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:manager_task/presentation/pages/taskList.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'firebase_options.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 void main() async{
@@ -32,7 +36,9 @@ void main() async{
     android: initializationSettingsAndroid,
     iOS: initializationSettingsIOS,
   );
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+    );
   
   runApp(MyApp());
 }
@@ -54,7 +60,8 @@ class MyApp extends StatelessWidget {
         "/ListTasks":  (context) => TaskListPage(),
         "/GroupTasks":  (context) => GroupTasksPage(),
         "/PersonAtachments":  (context) => PersonAttachmentsListPage(),
-        "/Notifies":  (context) => NotifiesPage()
+        "/Notifies":  (context) => NotifiesPage(),
+        "/GroupAtachments":  (context) => GroupAttachmentsListPage()
         //SignIn.routeName: (context) => const SignIn()
       },
       home:  SignInPage(),

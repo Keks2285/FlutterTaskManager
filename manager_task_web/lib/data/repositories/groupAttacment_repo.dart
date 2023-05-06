@@ -13,15 +13,15 @@ import 'package:manager_task_web/data/models/person_attacment.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-class PersonAtachmentsRepository{
+class GroupAtachmentsRepository{
   static List<PersonAtachment> allAttachment=[];
   
-    Future LoadPersonAttachments(String idTask) async {
+    Future LoadGroupAttachments(String idTask) async {
       //allAttachment.clear();
-      final path ="personAttachments/${idTask}/";
+      final path ="GroupAttachments/${idTask}/";
       final ref = FirebaseStorage.instance.ref().child(path);
       final list = await ref.listAll();
-      var a = list;
+
       if(list==null) return;
       for (var item in list.items) {
         var data =await item.getMetadata();
@@ -33,7 +33,7 @@ class PersonAtachmentsRepository{
             extension: data.contentType!)
           );
       }
-      //var a = allAttachment.first.filename!+allAttachment.first.size;
+      var a = allAttachment.first.filename!+allAttachment.first.size;
      
     }
 

@@ -107,7 +107,6 @@ class SignInPage extends StatelessWidget {
                                           child: Text("Войти")
                                           ),
                                         onPressed: () async {
-                                          NotificationService().createNotify(DateTime.now().add(Duration(minutes: 2)), "title", "Уведомление с указанным временем");
                                           BlocProvider.of<AuthBloc>(context).add(AuthLoginEvent(password: passController.text, email: emailController.text, remember: rememberMe));
                                           
                                         },

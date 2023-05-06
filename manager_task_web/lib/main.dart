@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:manager_task_web/presentation/pages/createTaskPage.dart';
+import 'package:manager_task_web/presentation/pages/groupAttachmentListPage.dart';
 import 'package:manager_task_web/presentation/pages/groupListPage.dart';
 import 'package:manager_task_web/presentation/pages/groupTasksPage.dart';
 import 'package:manager_task_web/presentation/pages/mainPage.dart';
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
         "/Groups":(context) => GroupListPage(),
         "/ListTasks":  (context) => TaskListPage(),
         "/GroupTasks":  (context) => GroupTasksPage(),
-        "/PersonAtachments":  (context) => PersonAttachmentsListPage()
+        "/PersonAtachments":  (context) => PersonAttachmentsListPage(),
+        "/GroupAtachments":  (context) => GroupAttachmentsListPage()
         //SignIn.routeName: (context) => const SignIn()
       },
       home:  SignInPage(),

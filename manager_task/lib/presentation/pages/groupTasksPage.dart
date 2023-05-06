@@ -213,6 +213,13 @@ class _GroupTasksPageState extends State<GroupTasksPage> {
                                 children: [
                                   Text(
                                       "${" ${state.taskList[index].description!}\n"} ${state.taskList[index].dateTask.toString().replaceAll(".000Z", "")}${state.taskList[index].completedBy == "-" ? "" : "\n Выполнил:" + state.taskList[index].completedBy!}"),
+                                      IconButton(
+                                        onPressed: () {
+                                          
+                                          Navigator.pushNamed(context, "/GroupAtachments");
+                                          AppEnv.selectedGroupTask=state.taskList[index].id.toString();
+                                        },
+                                        icon: Icon(Icons.attach_file)),
                                   if (scrArg.adminID == AppEnv.userId) ...{
                                     IconButton(
                                         onPressed: () {
