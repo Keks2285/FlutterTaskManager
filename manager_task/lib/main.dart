@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:manager_task/presentation/pages/commentsPage.dart';
 import 'package:manager_task/presentation/pages/createTaskPage.dart';
 import 'package:manager_task/presentation/pages/groupAttachmentListPage.dart';
 import 'package:manager_task/presentation/pages/groupListPage.dart';
@@ -61,7 +62,8 @@ class MyApp extends StatelessWidget {
         "/GroupTasks":  (context) => GroupTasksPage(),
         "/PersonAtachments":  (context) => PersonAttachmentsListPage(),
         "/Notifies":  (context) => NotifiesPage(),
-        "/GroupAtachments":  (context) => GroupAttachmentsListPage()
+        "/GroupAtachments":  (context) => GroupAttachmentsListPage(),
+        "/CommentsPage":  (context) => CommentsPage()
         //SignIn.routeName: (context) => const SignIn()
       },
       home:  SignInPage(),

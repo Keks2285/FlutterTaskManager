@@ -15,6 +15,9 @@ class _Comment{
   @Column(unique: false, indexed: true, nullable: false)
   String? authorEmail;
 
+  @Column(unique: false, indexed: true)
+  DateTime? dateComment;
+
   @Relate(#commentList, isRequired: true, onDelete: DeleteRule.cascade)
   GroupTask? groupTask;
 }
