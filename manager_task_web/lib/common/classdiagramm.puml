@@ -1,0 +1,1010 @@
+class "manager_task::data::models::notify.dart::Notify" {
+}
+
+"manager_task::data::models::notify.dart::_$Notify" <|-- "manager_task::data::models::notify.dart::Notify"
+
+abstract class "manager_task::data::models::notify.dart::$NotifyCopyWith" {
+  +$Res call()
+}
+
+class "manager_task::data::models::notify.dart::_$NotifyCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"manager_task::data::models::notify.dart::_$NotifyCopyWithImpl" o-- "null::$Res Function($Val)"
+"manager_task::data::models::notify.dart::$NotifyCopyWith" <|-- "manager_task::data::models::notify.dart::_$NotifyCopyWithImpl"
+
+abstract class "manager_task::data::models::notify.dart::_$$_NotifyCopyWith" {
+  +$Res call()
+}
+
+"manager_task::data::models::notify.dart::$NotifyCopyWith" <|-- "manager_task::data::models::notify.dart::_$$_NotifyCopyWith"
+
+class "manager_task::data::models::notify.dart::__$$_NotifyCopyWithImpl" {
+  +$Res call()
+}
+
+"manager_task::data::models::notify.dart::_$NotifyCopyWithImpl" <|-- "manager_task::data::models::notify.dart::__$$_NotifyCopyWithImpl"
+"manager_task::data::models::notify.dart::_$$_NotifyCopyWith" <|-- "manager_task::data::models::notify.dart::__$$_NotifyCopyWithImpl"
+
+class "manager_task::data::models::notify.dart::_$_Notify" {
+  +int id
+  +String? date_time
+  +String? title
+  +String? body
+  +int hashCode
+  +_$$_NotifyCopyWith<_$_Notify> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"manager_task::data::models::notify.dart::_$_Notify" o-- "manager_task::data::models::notify.dart::_$$_NotifyCopyWith<_$_Notify>"
+"manager_task::data::models::notify.dart::_Notify" <|-- "manager_task::data::models::notify.dart::_$_Notify"
+
+abstract class "manager_task::data::models::notify.dart::_Notify" {
+  +int id
+  +String? date_time
+  +String? title
+  +String? body
+  +_$$_NotifyCopyWith<_$_Notify> copyWith
+}
+
+"manager_task::data::models::notify.dart::_Notify" o-- "manager_task::data::models::notify.dart::_$$_NotifyCopyWith<_$_Notify>"
+"manager_task::data::models::notify.dart::Notify" <|-- "manager_task::data::models::notify.dart::_Notify"
+
+abstract class "manager_task::data::models::notify.dart::_$Notify" {
+  +int id
+  +String? date_time
+  +String? title
+  +String? body
+  +$NotifyCopyWith<Notify> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"manager_task::data::models::notify.dart::_$Notify" o-- "manager_task::data::models::notify.dart::$NotifyCopyWith<Notify>"
+
+class "manager_task::data::models::person_attacment.dart::PersonAtachment" {
+}
+
+"manager_task::data::models::person_attacment.dart::_$PersonAtachment" <|-- "manager_task::data::models::person_attacment.dart::PersonAtachment"
+
+abstract class "manager_task::data::models::person_attacment.dart::$PersonAtachmentCopyWith" {
+  +$Res call()
+}
+
+class "manager_task::data::models::person_attacment.dart::_$PersonAtachmentCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"manager_task::data::models::person_attacment.dart::_$PersonAtachmentCopyWithImpl" o-- "null::$Res Function($Val)"
+"manager_task::data::models::person_attacment.dart::$PersonAtachmentCopyWith" <|-- "manager_task::data::models::person_attacment.dart::_$PersonAtachmentCopyWithImpl"
+
+abstract class "manager_task::data::models::person_attacment.dart::_$$_PersonAtachmentCopyWith" {
+  +$Res call()
+}
+
+"manager_task::data::models::person_attacment.dart::$PersonAtachmentCopyWith" <|-- "manager_task::data::models::person_attacment.dart::_$$_PersonAtachmentCopyWith"
+
+class "manager_task::data::models::person_attacment.dart::__$$_PersonAtachmentCopyWithImpl" {
+  +$Res call()
+}
+
+"manager_task::data::models::person_attacment.dart::_$PersonAtachmentCopyWithImpl" <|-- "manager_task::data::models::person_attacment.dart::__$$_PersonAtachmentCopyWithImpl"      
+"manager_task::data::models::person_attacment.dart::_$$_PersonAtachmentCopyWith" <|-- "manager_task::data::models::person_attacment.dart::__$$_PersonAtachmentCopyWithImpl"        
+
+class "manager_task::data::models::person_attacment.dart::_$_PersonAtachment" {
+  +String? filename
+  +String extension
+  +String size
+  +int hashCode
+  +_$$_PersonAtachmentCopyWith<_$_PersonAtachment> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"manager_task::data::models::person_attacment.dart::_$_PersonAtachment" o-- "manager_task::data::models::person_attacment.dart::_$$_PersonAtachmentCopyWith<_$_PersonAtachment>"   
+"manager_task::data::models::person_attacment.dart::_PersonAtachment" <|-- "manager_task::data::models::person_attacment.dart::_$_PersonAtachment"
+
+abstract class "manager_task::data::models::person_attacment.dart::_PersonAtachment" {
+  +String? filename
+  +String extension
+  +String size
+  +_$$_PersonAtachmentCopyWith<_$_PersonAtachment> copyWith
+}
+
+"manager_task::data::models::person_attacment.dart::_PersonAtachment" o-- "manager_task::data::models::person_attacment.dart::_$$_PersonAtachmentCopyWith<_$_PersonAtachment>"     
+"manager_task::data::models::person_attacment.dart::PersonAtachment" <|-- "manager_task::data::models::person_attacment.dart::_PersonAtachment"
+
+abstract class "manager_task::data::models::person_attacment.dart::_$PersonAtachment" {
+  +String? filename
+  +String extension
+  +String size
+  +$PersonAtachmentCopyWith<PersonAtachment> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"manager_task::data::models::person_attacment.dart::_$PersonAtachment" o-- "manager_task::data::models::person_attacment.dart::$PersonAtachmentCopyWith<PersonAtachment>"
+
+class "manager_task::data::models::task.dart::ToDoTask" {
+}
+
+"manager_task::data::models::task.dart::_$ToDoTask" <|-- "manager_task::data::models::task.dart::ToDoTask"
+
+abstract class "manager_task::data::models::task.dart::$ToDoTaskCopyWith" {
+  +$Res call()
+}
+
+class "manager_task::data::models::task.dart::_$ToDoTaskCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"manager_task::data::models::task.dart::_$ToDoTaskCopyWithImpl" o-- "null::$Res Function($Val)"
+"manager_task::data::models::task.dart::$ToDoTaskCopyWith" <|-- "manager_task::data::models::task.dart::_$ToDoTaskCopyWithImpl"
+
+abstract class "manager_task::data::models::task.dart::_$$_ToDoTaskCopyWith" {
+  +$Res call()
+}
+
+"manager_task::data::models::task.dart::$ToDoTaskCopyWith" <|-- "manager_task::data::models::task.dart::_$$_ToDoTaskCopyWith"
+
+class "manager_task::data::models::task.dart::__$$_ToDoTaskCopyWithImpl" {
+  +$Res call()
+}
+
+"manager_task::data::models::task.dart::_$ToDoTaskCopyWithImpl" <|-- "manager_task::data::models::task.dart::__$$_ToDoTaskCopyWithImpl"
+"manager_task::data::models::task.dart::_$$_ToDoTaskCopyWith" <|-- "manager_task::data::models::task.dart::__$$_ToDoTaskCopyWithImpl"
+
+class "manager_task::data::models::task.dart::_$_ToDoTask" {
+  +int id
+  +String? description
+  +String? tag
+  +DateTime? dateTask
+  +int hashCode
+  +_$$_ToDoTaskCopyWith<_$_ToDoTask> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"manager_task::data::models::task.dart::_$_ToDoTask" o-- "manager_task::data::models::task.dart::_$$_ToDoTaskCopyWith<_$_ToDoTask>"
+"manager_task::data::models::task.dart::_ToDoTask" <|-- "manager_task::data::models::task.dart::_$_ToDoTask"
+
+abstract class "manager_task::data::models::task.dart::_ToDoTask" {
+  +int id
+  +String? description
+  +String? tag
+  +DateTime? dateTask
+  +_$$_ToDoTaskCopyWith<_$_ToDoTask> copyWith
+}
+
+"manager_task::data::models::task.dart::_ToDoTask" o-- "manager_task::data::models::task.dart::_$$_ToDoTaskCopyWith<_$_ToDoTask>"
+"manager_task::data::models::task.dart::ToDoTask" <|-- "manager_task::data::models::task.dart::_ToDoTask"
+
+abstract class "manager_task::data::models::task.dart::_$ToDoTask" {
+  +int id
+  +String? description
+  +String? tag
+  +DateTime? dateTask
+  +$ToDoTaskCopyWith<ToDoTask> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"manager_task::data::models::task.dart::_$ToDoTask" o-- "manager_task::data::models::task.dart::$ToDoTaskCopyWith<ToDoTask>"
+
+class "manager_task::data::models::user.dart::User" {
+}
+
+"manager_task::data::models::user.dart::_$User" <|-- "manager_task::data::models::user.dart::User"
+
+abstract class "manager_task::data::models::user.dart::$UserCopyWith" {
+  +$Res call()
+}
+
+class "manager_task::data::models::user.dart::_$UserCopyWithImpl" {
+  -$Val _value
+  -$Res Function($Val) _then
+  +$Res call()
+}
+
+"manager_task::data::models::user.dart::_$UserCopyWithImpl" o-- "null::$Res Function($Val)"
+"manager_task::data::models::user.dart::$UserCopyWith" <|-- "manager_task::data::models::user.dart::_$UserCopyWithImpl"
+
+abstract class "manager_task::data::models::user.dart::_$$_UserCopyWith" {
+  +$Res call()
+}
+
+"manager_task::data::models::user.dart::$UserCopyWith" <|-- "manager_task::data::models::user.dart::_$$_UserCopyWith"
+
+class "manager_task::data::models::user.dart::__$$_UserCopyWithImpl" {
+  +$Res call()
+}
+
+"manager_task::data::models::user.dart::_$UserCopyWithImpl" <|-- "manager_task::data::models::user.dart::__$$_UserCopyWithImpl"
+"manager_task::data::models::user.dart::_$$_UserCopyWith" <|-- "manager_task::data::models::user.dart::__$$_UserCopyWithImpl"
+
+class "manager_task::data::models::user.dart::_$_User" {
+  +int id
+  +String email
+  +String? password
+  +String? firstname
+  +String? lastname
+  +String? middlename
+  +String? accessToken
+  +String? refreshToken
+  +int hashCode
+  +_$$_UserCopyWith<_$_User> copyWith
+  +String toString()
+  +bool ==()
+  +Map<String, dynamic> toJson()
+}
+
+"manager_task::data::models::user.dart::_$_User" o-- "manager_task::data::models::user.dart::_$$_UserCopyWith<_$_User>"
+"manager_task::data::models::user.dart::_User" <|-- "manager_task::data::models::user.dart::_$_User"
+
+abstract class "manager_task::data::models::user.dart::_User" {
+  +int id
+  +String email
+  +String? password
+  +String? firstname
+  +String? lastname
+  +String? middlename
+  +String? accessToken
+  +String? refreshToken
+  +_$$_UserCopyWith<_$_User> copyWith
+}
+
+"manager_task::data::models::user.dart::_User" o-- "manager_task::data::models::user.dart::_$$_UserCopyWith<_$_User>"
+"manager_task::data::models::user.dart::User" <|-- "manager_task::data::models::user.dart::_User"
+
+abstract class "manager_task::data::models::user.dart::_$User" {
+  +int id
+  +String email
+  +String? password
+  +String? firstname
+  +String? lastname
+  +String? middlename
+  +String? accessToken
+  +String? refreshToken
+  +$UserCopyWith<User> copyWith
+  +Map<String, dynamic> toJson()
+}
+
+"manager_task::data::models::user.dart::_$User" o-- "manager_task::data::models::user.dart::$UserCopyWith<User>"
+
+class "manager_task::data::repositories::auth_repo.dart::AuthRepo" {
+  +Future<Either<String, User>> signIn()
+  +Future<Either<String, User>> signUp()
+}
+
+class "manager_task::data::repositories::comments_repo.dart::ComentsRepo" {
+  {static} +List<Comment> allComments
+  +Future<Either<String, int>> LoadComments()
+  +Future<Either<String, int>> deleteComment()
+  +Future<Either<String, int>> createComment()
+}
+
+class "manager_task::data::repositories::groupAttacment_repo.dart::GroupAtachmentsRepository" {
+  {static} +List<PersonAtachment> allAttachment
+  +Future<dynamic> LoadGroupAttachments()
+}
+
+class "manager_task::data::repositories::groups_repo.dart::GroupsRepo" {
+  {static} +List<Group> allGroups
+  +Future<Either<String, int>> LoadGroups()
+  +Future<Either<String, int>> deleteLeaveGroup()
+  +Future<Either<String, int>> createGroup()
+  +Future<Either<String, int>> joinGroup()
+}
+
+class "manager_task::data::repositories::groupTasks_repo.dart::GroupTaskRepo" {
+  {static} +List<GroupTask> allTasks
+  +Future<Either<String, int>> LoadGroupTasks()
+  +Future<Either<String, int>> CreateTask()
+  +Future<Either<String, int>> Deletetask()
+  +Future<Either<String, int>> CompleteTask()
+}
+
+class "manager_task::data::repositories::notify_repo.dart::NotifyRepo" {
+  +FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin
+  {static} +List<PendingNotificationRequest> allNotifies
+  +dynamic getNotyifications()
+}
+
+"manager_task::data::repositories::notify_repo.dart::NotifyRepo" o-- "flutter_local_notifications::src::flutter_local_notifications_plugin.dart::FlutterLocalNotificationsPlugin"  
+
+class "manager_task::data::repositories::personAttacment_repo.dart::PersonAtachmentsRepository" {
+  {static} +List<PersonAtachment> allAttachment
+  +Future<dynamic> LoadPersonAttachments()
+}
+
+class "manager_task::data::repositories::task_repo.dart::TaskRepo" {
+  {static} +List<ToDoTask> allTasks
+  +Future<Either<String, int>> LoadTasks()
+  +Future<Either<String, int>> CreateTask()
+  +Future<Either<String, int>> Deletetask()
+}
+
+class "manager_task::domain::entities::task_entity.dart::TaskEntity" {
+  +String? description
+  +String? tag
+  +DateTime? dateTask
+}
+
+class "manager_task::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions web
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions macos
+  {static} +FirebaseOptions currentPlatform
+}
+
+"manager_task::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "manager_task::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "manager_task::main.dart::MyApp"
+
+class "manager_task::presentation::blocs::auth_bloc.dart::AuthBloc" {
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "manager_task::presentation::blocs::auth_bloc.dart::AuthBloc"
+
+abstract class "manager_task::presentation::blocs::auth_bloc.dart::AuthBlocState" {
+  +String message
+  +bool succes
+}
+
+abstract class "manager_task::presentation::blocs::auth_bloc.dart::AuthBlocEvent" {
+}
+
+class "manager_task::presentation::blocs::auth_bloc.dart::AuthLoginEvent" {
+  +String password
+  +String email
+  +bool remember
+}
+
+"manager_task::presentation::blocs::auth_bloc.dart::AuthBlocEvent" <|-- "manager_task::presentation::blocs::auth_bloc.dart::AuthLoginEvent"
+
+class "manager_task::presentation::blocs::auth_bloc.dart::AuthInitState" {
+  +String mesage
+}
+
+"manager_task::presentation::blocs::auth_bloc.dart::AuthBlocState" <|-- "manager_task::presentation::blocs::auth_bloc.dart::AuthInitState"
+
+class "manager_task::presentation::blocs::auth_bloc.dart::AuthFailedState" {
+  +String message
+  +bool succes
+}
+
+"manager_task::presentation::blocs::auth_bloc.dart::AuthBlocState" <|-- "manager_task::presentation::blocs::auth_bloc.dart::AuthFailedState"
+
+class "manager_task::presentation::blocs::auth_bloc.dart::AuthSuccesState" {
+  +User user
+  +String message
+  +bool succes
+}
+
+"manager_task::presentation::blocs::auth_bloc.dart::AuthSuccesState" o-- "manager_task::data::models::user.dart::User"
+"manager_task::presentation::blocs::auth_bloc.dart::AuthBlocState" <|-- "manager_task::presentation::blocs::auth_bloc.dart::AuthSuccesState"
+
+class "manager_task::presentation::blocs::comments_bloc.dart::CommentsBloc" {
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "manager_task::presentation::blocs::comments_bloc.dart::CommentsBloc"
+
+abstract class "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocState" {
+  +String nameState
+  +List<Comment> Comments
+  +bool succes
+  +String message
+}
+
+abstract class "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocEvent" {
+}
+
+class "manager_task::presentation::blocs::comments_bloc.dart::CommentDeleteEvent" {
+  +int id
+  +List<Comment> Comments
+}
+
+"manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocEvent" <|-- "manager_task::presentation::blocs::comments_bloc.dart::CommentDeleteEvent"
+
+class "manager_task::presentation::blocs::comments_bloc.dart::CommentsInitEvent" {
+}
+
+"manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocEvent" <|-- "manager_task::presentation::blocs::comments_bloc.dart::CommentsInitEvent"
+
+class "manager_task::presentation::blocs::comments_bloc.dart::TaskSearchEvent" {
+  +String query
+}
+
+"manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocEvent" <|-- "manager_task::presentation::blocs::comments_bloc.dart::TaskSearchEvent"
+
+class "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocAddEvent" {
+  +String description
+}
+
+"manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocEvent" <|-- "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocAddEvent"
+
+class "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocInitState" {
+  +String nameState
+  +bool succes
+  +List<Comment> Comments
+  +List<Comment> searchedTask
+}
+
+"manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocState" <|-- "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocInitState"
+
+class "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocSearchState" {
+  +String nameState
+  +bool succes
+  +List<Comment> Comments
+}
+
+"manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocState" <|-- "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocSearchState"
+
+class "manager_task::presentation::blocs::comments_bloc.dart::ConnectionErrorEvent" {
+}
+
+"manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocEvent" <|-- "manager_task::presentation::blocs::comments_bloc.dart::ConnectionErrorEvent"
+
+class "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocConnectionErrorState" {
+  +List<Comment> Comments
+  +String message
+  +String nameState
+  +bool succes
+}
+
+"manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocState" <|-- "manager_task::presentation::blocs::comments_bloc.dart::CommentsBlocConnectionErrorState"
+
+class "manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskBloc" {
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskBloc"
+
+abstract class "manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskBlocState" {
+  +String message
+  +String description
+  +bool succes
+  +String selectedtag
+  +String dateTime
+  +String TimeOfDay
+}
+
+abstract class "manager_task::presentation::blocs::create_task_bloc.dart::TaskBlocEvent" {
+}
+
+class "manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskBlocEvent" {
+  +String description
+  +String selectedtag
+  +String dateTime
+}
+
+"manager_task::presentation::blocs::create_task_bloc.dart::TaskBlocEvent" <|-- "manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskBlocEvent"
+
+class "manager_task::presentation::blocs::create_task_bloc.dart::SelectedTagEvent" {
+  +String selectedtag
+  +String dateTime
+  +String timeOfDay
+}
+
+"manager_task::presentation::blocs::create_task_bloc.dart::TaskBlocEvent" <|-- "manager_task::presentation::blocs::create_task_bloc.dart::SelectedTagEvent"
+
+class "manager_task::presentation::blocs::create_task_bloc.dart::SelectedDateTimeEvent" {
+  +String selectedtag
+  +DateTime dateTime
+  +TimeOfDay timeOfDay
+}
+
+"manager_task::presentation::blocs::create_task_bloc.dart::SelectedDateTimeEvent" o-- "flutter::src::material::time.dart::TimeOfDay"
+"manager_task::presentation::blocs::create_task_bloc.dart::TaskBlocEvent" <|-- "manager_task::presentation::blocs::create_task_bloc.dart::SelectedDateTimeEvent"
+
+class "manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskInitState" {
+  +String message
+  +String dateTime
+  +String selectedtag
+}
+
+"manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskBlocState" <|-- "manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskInitState"
+
+class "manager_task::presentation::blocs::create_task_bloc.dart::SelectedTagState" {
+  +String selectedtag
+  +String dateTime
+}
+
+"manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskBlocState" <|-- "manager_task::presentation::blocs::create_task_bloc.dart::SelectedTagState"
+
+class "manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskConnectionError" {
+  +String dateTime
+  +String message
+}
+
+"manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskBlocState" <|-- "manager_task::presentation::blocs::create_task_bloc.dart::CreateTaskConnectionError"
+
+class "manager_task::presentation::blocs::group_list_bloc.dart::GroupListBloc" {
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "manager_task::presentation::blocs::group_list_bloc.dart::GroupListBloc"
+
+abstract class "manager_task::presentation::blocs::group_list_bloc.dart::GroupListState" {
+  +List<Group> groupList
+  +String nameState
+  +String message
+  +bool succes
+}
+
+abstract class "manager_task::presentation::blocs::group_list_bloc.dart::GroupListEvent" {
+}
+
+class "manager_task::presentation::blocs::group_list_bloc.dart::GroupListInitState" {
+  +String nameState
+  +bool succes
+  +List<Group> groupList
+}
+
+"manager_task::presentation::blocs::group_list_bloc.dart::GroupListState" <|-- "manager_task::presentation::blocs::group_list_bloc.dart::GroupListInitState"
+
+class "manager_task::presentation::blocs::group_list_bloc.dart::GroupListConnectionError" {
+  +String nameState
+  +List<Group> groupList
+  +bool succes
+  +String message
+}
+
+"manager_task::presentation::blocs::group_list_bloc.dart::GroupListState" <|-- "manager_task::presentation::blocs::group_list_bloc.dart::GroupListConnectionError"
+
+class "manager_task::presentation::blocs::group_list_bloc.dart::GroupListInitEvent" {
+}
+
+"manager_task::presentation::blocs::group_list_bloc.dart::GroupListEvent" <|-- "manager_task::presentation::blocs::group_list_bloc.dart::GroupListInitEvent"
+
+class "manager_task::presentation::blocs::group_list_bloc.dart::JoinGroupEvent" {
+  +String nameGroup
+}
+
+"manager_task::presentation::blocs::group_list_bloc.dart::GroupListEvent" <|-- "manager_task::presentation::blocs::group_list_bloc.dart::JoinGroupEvent"
+
+class "manager_task::presentation::blocs::group_list_bloc.dart::CreateGroupEvent" {
+  +String nameGroup
+}
+
+"manager_task::presentation::blocs::group_list_bloc.dart::GroupListEvent" <|-- "manager_task::presentation::blocs::group_list_bloc.dart::CreateGroupEvent"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBloc" {
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBloc"
+
+abstract class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocState" {
+  +String nameState
+  +List<GroupTask> taskList
+  +bool succes
+  +String message
+  +String date
+  +String Time
+  +String description
+}
+
+abstract class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocEvent" {
+}
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::CreateGroupTaskEvent" {
+  +int groupId
+  +String date
+  +String Time
+  +String description
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocEvent" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::CreateGroupTaskEvent"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::SelectedDateTimeEvent" {
+  +String date
+  +String Time
+  +String description
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocEvent" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::SelectedDateTimeEvent"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksDeleteEvent" {
+  +String date
+  +String Time
+  +String description
+  +int id
+  +List<GroupTask> taskList
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocEvent" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksDeleteEvent"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksInitEvent" {
+  +int groupId
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocEvent" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksInitEvent"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksSearchEvent" {
+  +String query
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocEvent" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksSearchEvent"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocSearcEvent" {
+  +String tag
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocEvent" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocSearcEvent"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocInitState" {
+  +String nameState
+  +bool succes
+  +String message
+  +String date
+  +String Time
+  +String description
+  +List<GroupTask> taskList
+  +List<GroupTask> searchedTask
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocState" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocInitState"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocSearchState" {
+  +String nameState
+  +bool succes
+  +String date
+  +String Time
+  +List<GroupTask> taskList
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocState" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocSearchState"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::ConnectionErrorEvent" {
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocEvent" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::ConnectionErrorEvent"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::CompleteTaskEvent" {
+  +int id
+  +int index
+  +String date
+  +String Time
+  +String description
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocEvent" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::CompleteTaskEvent"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::CompleteTaskState" {
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocState" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::CompleteTaskState"
+
+class "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocConnectionErrorState" {
+  +List<GroupTask> taskList
+  +String message
+  +String nameState
+  +bool succes
+  +String date
+  +String Time
+}
+
+"manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocState" <|-- "manager_task::presentation::blocs::group_tasks_bloc.dart::GroupTasksBlocConnectionErrorState"
+class "manager_task::presentation::blocs::registration_bloc.dart::RegBloc" {
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "manager_task::presentation::blocs::registration_bloc.dart::RegBloc"
+
+class "manager_task::presentation::blocs::registration_bloc.dart::RegBlocEvent" {
+  +String email
+  +String password
+  +String repeatPassword
+  +String firstname
+  +String lastname
+  +String? middlename
+}
+
+abstract class "manager_task::presentation::blocs::registration_bloc.dart::RegBlocState" {
+  +String message
+  +bool succes
+}
+
+class "manager_task::presentation::blocs::registration_bloc.dart::RegInitState" {
+  +String message
+  +bool succes
+}
+
+"manager_task::presentation::blocs::registration_bloc.dart::RegBlocState" <|-- "manager_task::presentation::blocs::registration_bloc.dart::RegInitState"
+
+class "manager_task::presentation::blocs::registration_bloc.dart::RegSuccesState" {
+  +String message
+  +bool succes
+}
+
+"manager_task::presentation::blocs::registration_bloc.dart::RegBlocState" <|-- "manager_task::presentation::blocs::registration_bloc.dart::RegSuccesState"
+
+class "manager_task::presentation::blocs::registration_bloc.dart::RegFailedState" {
+  +String message
+  +bool succes
+}
+
+"manager_task::presentation::blocs::registration_bloc.dart::RegBlocState" <|-- "manager_task::presentation::blocs::registration_bloc.dart::RegFailedState"
+
+class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBloc" {
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBloc"
+
+abstract class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocState" {
+  +String nameState
+  +List<ToDoTask> taskList
+  +bool succes
+  +String message
+}
+
+abstract class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocEvent" {
+}
+
+class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskDeleteEvent" {
+  +int id
+  +List<ToDoTask> taskList
+}
+
+"manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocEvent" <|-- "manager_task::presentation::blocs::tasklist_bloc.dart::TaskDeleteEvent"
+
+class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListInitEvent" {
+}
+
+"manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocEvent" <|-- "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListInitEvent"
+
+class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskSearchEvent" {
+  +String query
+}
+
+"manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocEvent" <|-- "manager_task::presentation::blocs::tasklist_bloc.dart::TaskSearchEvent"
+
+class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocSearcEvent" {
+  +String tag
+}
+
+"manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocEvent" <|-- "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocSearcEvent"
+
+class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocInitState" {
+  +String nameState
+  +bool succes
+  +List<ToDoTask> taskList
+  +List<ToDoTask> searchedTask
+}
+
+"manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocState" <|-- "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocInitState"
+
+class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocSearchState" {
+  +String nameState
+  +bool succes
+  +List<ToDoTask> taskList
+}
+
+"manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocState" <|-- "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocSearchState"
+
+class "manager_task::presentation::blocs::tasklist_bloc.dart::ConnectionErrorEvent" {
+}
+
+"manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocEvent" <|-- "manager_task::presentation::blocs::tasklist_bloc.dart::ConnectionErrorEvent"
+
+class "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocConnectionErrorState" {
+  +List<ToDoTask> taskList
+  +String message
+  +String nameState
+  +bool succes
+}
+
+"manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocState" <|-- "manager_task::presentation::blocs::tasklist_bloc.dart::TaskListBlocConnectionErrorState"
+
+class "manager_task::presentation::customWidgets::customCheckbox.dart::MyCheckBox" {
+  +void Function() onChanged
+  +State<StatefulWidget> createState()
+}
+
+"manager_task::presentation::customWidgets::customCheckbox.dart::MyCheckBox" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "manager_task::presentation::customWidgets::customCheckbox.dart::MyCheckBox"
+
+class "manager_task::presentation::customWidgets::customCheckbox.dart::MyCheckBoxState" {
+  +bool isCheck
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "manager_task::presentation::customWidgets::customCheckbox.dart::MyCheckBoxState"
+
+class "manager_task::presentation::customWidgets::customDateTimePickers.dart::MyDateTimePicker" {
+  +void Function() onChanged
+  +String finalString
+  +State<StatefulWidget> createState()
+}
+
+"manager_task::presentation::customWidgets::customDateTimePickers.dart::MyDateTimePicker" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "manager_task::presentation::customWidgets::customDateTimePickers.dart::MyDateTimePicker"
+
+class "manager_task::presentation::customWidgets::customDateTimePickers.dart::MyDateTimePickerState" {
+  +DateTime selectedDateTime
+  +TimeOfDay selectedTime
+  +String finalString
+  +bool isCheck
+  -Future<void> _showPicker()
+  +Widget build()
+}
+
+"manager_task::presentation::customWidgets::customDateTimePickers.dart::MyDateTimePickerState" o-- "flutter::src::material::time.dart::TimeOfDay"
+"flutter::src::widgets::framework.dart::State" <|-- "manager_task::presentation::customWidgets::customDateTimePickers.dart::MyDateTimePickerState"
+
+class "manager_task::presentation::pages::commentsPage.dart::CommentsPage" {
+  +State<CommentsPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "manager_task::presentation::pages::commentsPage.dart::CommentsPage"
+
+class "manager_task::presentation::pages::commentsPage.dart::_CommentsPageState" {
+  +bool stop
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "manager_task::presentation::pages::commentsPage.dart::_CommentsPageState"
+
+class "manager_task::presentation::pages::createTaskPage.dart::CreateTaskPage" {
+  +TextEditingController descriptionController
+  +DateTime selectedDateTime
+  +TimeOfDay selectedTime
+  +bool stop
+  +List<String> dropdownMenuItems
+  -Future<void> _showPicker()
+  +Widget build()
+}
+
+"manager_task::presentation::pages::createTaskPage.dart::CreateTaskPage" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"manager_task::presentation::pages::createTaskPage.dart::CreateTaskPage" o-- "flutter::src::material::time.dart::TimeOfDay"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "manager_task::presentation::pages::createTaskPage.dart::CreateTaskPage"
+
+class "manager_task::presentation::pages::groupAttachmentListPage.dart::GroupAttachmentsListPage" {
+  +State<GroupAttachmentsListPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "manager_task::presentation::pages::groupAttachmentListPage.dart::GroupAttachmentsListPage"
+
+class "manager_task::presentation::pages::groupAttachmentListPage.dart::_GroupAttachmentsListPageState" {
+  {static} +PlatformFile? pickedFile
+  {static} +UploadTask? uploadTask
+  {static} +DownloadTask? downloadTask
+  +Future<dynamic> downloadFile()
+  +Future<dynamic> uploadFile()
+  +Future<dynamic> deleteFile()
+  +void initState()
+  +Widget build()
+  +Widget buildProgress()
+}
+
+"manager_task::presentation::pages::groupAttachmentListPage.dart::_GroupAttachmentsListPageState" o-- "file_picker::src::platform_file.dart::PlatformFile"
+"manager_task::presentation::pages::groupAttachmentListPage.dart::_GroupAttachmentsListPageState" o-- "firebase_storage::firebase_storage.dart::UploadTask"
+"manager_task::presentation::pages::groupAttachmentListPage.dart::_GroupAttachmentsListPageState" o-- "firebase_storage::firebase_storage.dart::DownloadTask"
+"flutter::src::widgets::framework.dart::State" <|-- "manager_task::presentation::pages::groupAttachmentListPage.dart::_GroupAttachmentsListPageState"
+
+class "manager_task::presentation::pages::groupListPage.dart::GroupListPage" {
+  +bool stop
+  +TextEditingController namegroupController
+  -bool _searchBoolean
+  +Widget build()
+  -Widget _searchTextField()
+}
+
+"manager_task::presentation::pages::groupListPage.dart::GroupListPage" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "manager_task::presentation::pages::groupListPage.dart::GroupListPage"
+
+class "manager_task::presentation::pages::groupTasksPage.dart::GroupTasksPage" {
+  +State<GroupTasksPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "manager_task::presentation::pages::groupTasksPage.dart::GroupTasksPage"
+
+class "manager_task::presentation::pages::groupTasksPage.dart::ScreenArguments" {
+  +int groupID
+  +String groupName
+  +int adminID
+}
+
+class "manager_task::presentation::pages::groupTasksPage.dart::_GroupTasksPageState" {
+  +bool stop
+  -bool _searchBoolean
+  +Widget build()
+  -Widget _searchTextField()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "manager_task::presentation::pages::groupTasksPage.dart::_GroupTasksPageState"
+
+class "manager_task::presentation::pages::notifiesPage.dart::NotifiesPage" {
+  +State<NotifiesPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "manager_task::presentation::pages::notifiesPage.dart::NotifiesPage"
+
+class "manager_task::presentation::pages::notifiesPage.dart::_NotifiesPageState" {
+  +bool stop
+  +void initState()
+  +Widget build()
+  -Widget _searchTextField()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "manager_task::presentation::pages::notifiesPage.dart::_NotifiesPageState"
+
+class "manager_task::presentation::pages::personAttachmentListPage.dart::PersonAttachmentsListPage" {
+  +State<PersonAttachmentsListPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "manager_task::presentation::pages::personAttachmentListPage.dart::PersonAttachmentsListPage"
+
+class "manager_task::presentation::pages::personAttachmentListPage.dart::_PersonAttachmentsListPageState" {
+  {static} +PlatformFile? pickedFile
+  {static} +UploadTask? uploadTask
+  {static} +DownloadTask? downloadTask
+  +Future<dynamic> downloadFile()
+  +Future<dynamic> uploadFile()
+  +Future<dynamic> deleteFile()
+  +void initState()
+  +Widget build()
+  +Widget buildProgress()
+  +Widget buildDownloadProgress()
+}
+
+"manager_task::presentation::pages::personAttachmentListPage.dart::_PersonAttachmentsListPageState" o-- "file_picker::src::platform_file.dart::PlatformFile"
+"manager_task::presentation::pages::personAttachmentListPage.dart::_PersonAttachmentsListPageState" o-- "firebase_storage::firebase_storage.dart::UploadTask"
+"manager_task::presentation::pages::personAttachmentListPage.dart::_PersonAttachmentsListPageState" o-- "firebase_storage::firebase_storage.dart::DownloadTask"
+"flutter::src::widgets::framework.dart::State" <|-- "manager_task::presentation::pages::personAttachmentListPage.dart::_PersonAttachmentsListPageState"
+
+class "manager_task::presentation::pages::signInPage.dart::SignInPage" {
+  +TextEditingController emailController
+  +TextEditingController passController
+  +String message
+  +dynamic prefs
+  +bool rememberMe
+  +Future<dynamic> prefsInit()
+  +Widget build()
+}
+
+"manager_task::presentation::pages::signInPage.dart::SignInPage" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "manager_task::presentation::pages::signInPage.dart::SignInPage"
+
+class "manager_task::presentation::pages::signUpPage.dart::SignUpPage" {
+  -GlobalKey<FormState> _formKey
+  +TextEditingController emailController
+  +TextEditingController passController
+  +TextEditingController repPassController
+  +TextEditingController firstnameC
+  +TextEditingController lastnameC
+  +TextEditingController middlenameC
+  +Widget build()
+}
+
+"manager_task::presentation::pages::signUpPage.dart::SignUpPage" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"manager_task::presentation::pages::signUpPage.dart::SignUpPage" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "manager_task::presentation::pages::signUpPage.dart::SignUpPage"
+
+class "manager_task::presentation::pages::taskList.dart::TaskListPage" {
+  +State<TaskListPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "manager_task::presentation::pages::taskList.dart::TaskListPage"
+
+class "manager_task::presentation::pages::taskList.dart::_TaskListPageState" {
+  +bool stop
+  -bool _searchBoolean
+  +Widget build()
+  -Widget _searchTextField()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "manager_task::presentation::pages::taskList.dart::_TaskListPageState"
+
+
+@enduml

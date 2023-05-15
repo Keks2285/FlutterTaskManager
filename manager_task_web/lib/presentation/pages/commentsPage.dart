@@ -127,7 +127,7 @@ class _CommentsPageState extends State<CommentsPage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                        "${state.Comments[index].dateComment}\n${"${state.Comments[index].comment!}\n"}\n ${state.Comments[index].email.toString().replaceAll(".000Z", "")}"),
+                                        "${state.Comments[index].dateComment.toString().substring(0, state.Comments[index].dateComment.toString().length - 7)}\n${"${state.Comments[index].comment!}\n"}\n ${state.Comments[index].email.toString().replaceAll(".000Z", "")}"),
                                     if (adminID == AppEnv.userId) 
                                         IconButton(
                                         onPressed: () {

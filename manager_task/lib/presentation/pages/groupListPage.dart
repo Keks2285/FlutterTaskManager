@@ -50,7 +50,7 @@ class GroupListPage extends StatelessWidget {
 
           return Scaffold(
             appBar: AppBar(
-              title: Text("My Groups"),
+              title: Text("Группы"),
             ),
             body: Column(
               children: [

@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manager_task/common/search.dart';
 import 'package:manager_task/data/models/task.dart';
-import 'package:manager_task/core/usecase/firestore_person_attacments.dart';
 import 'package:manager_task/data/repositories/groups_repo.dart';
 import 'package:manager_task/data/repositories/personAttacment_repo.dart';
 import 'package:manager_task/data/repositories/task_repo.dart';
@@ -53,7 +52,7 @@ class _TaskListPageState extends State<TaskListPage> {
                 //title: _searchTextField(context),
                 //title:  _searchTextField(),
                 title:
-                    !_searchBoolean ? Text("ToDo") : _searchTextField(context),
+                    !_searchBoolean ? Text("Личные задачи") : _searchTextField(context),
                 actions: !_searchBoolean
                     ? [
                         IconButton(

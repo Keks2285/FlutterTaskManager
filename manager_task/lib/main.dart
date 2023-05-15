@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:manager_task/presentation/pages/commentsPage.dart';
 import 'package:manager_task/presentation/pages/createTaskPage.dart';
@@ -24,8 +25,12 @@ import 'package:timezone/timezone.dart' as tz;
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 void main() async{
    
-
+  
    WidgetsFlutterBinding.ensureInitialized();
+   SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     tz.initializeTimeZones();
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
     final AndroidInitializationSettings initializationSettingsAndroid =

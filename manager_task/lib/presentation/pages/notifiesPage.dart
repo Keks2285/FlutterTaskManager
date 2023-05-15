@@ -35,7 +35,7 @@ class _NotifiesPageState extends State<NotifiesPage> {
   bool stop = false;
 
   //bool isRedirected =false;
-  bool _searchBoolean = false;
+  //bool _searchBoolean = false;
   //int totalValueItems = 0;
 
   @override
@@ -96,16 +96,10 @@ class _NotifiesPageState extends State<NotifiesPage> {
           ),
           //title: _searchTextField(context),
           //title:  _searchTextField(),
-          title: !_searchBoolean ? Text("Notifies") : _searchTextField(context),
-          actions: !_searchBoolean
-              ? [
-                  IconButton(
-                      icon: Icon(Icons.search),
-                      onPressed: () {
-                        setState(() {
-                          _searchBoolean = true;
-                        });
-                      }),
+          title:  Text("Уведомления"),
+          actions: 
+              [
+                  
                   IconButton(
                       icon: const Icon(Icons.logout),
                       onPressed: () {
@@ -114,17 +108,6 @@ class _NotifiesPageState extends State<NotifiesPage> {
                         GroupsRepo.allGroups.clear();
                         Navigator.pushReplacementNamed(context, "/SignIn",
                             arguments: false);
-                      })
-                ]
-              : [
-                  IconButton(
-                      icon: Icon(Icons.clear),
-                      onPressed: () {
-                        setState(() {
-                          _searchBoolean = false;
-                          // BlocProvider.of<GroupTasksBloc>(context)
-                          //     .add(GroupTasksSearchEvent(query: ""));
-                        });
                       })
                 ]
           // actions:  [

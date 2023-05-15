@@ -134,7 +134,7 @@ class _PersonAttachmentsListPageState extends State<PersonAttachmentsListPage> {
     //PersonAtachmentsRepository().LoadPersonAttachments(taskID);
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Attachments"),
+        title: Text("Вложения"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

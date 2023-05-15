@@ -133,7 +133,7 @@ class _GroupAttachmentsListPageState extends State<GroupAttachmentsListPage> {
     //GroupAtachmentsRepository().LoadGroupAttachments(taskID);
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Attachments"),
+        title: Text("Вложения"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -251,59 +251,4 @@ class _GroupAttachmentsListPageState extends State<GroupAttachmentsListPage> {
           return const SizedBox(height: 50);
         }
       });
-
-  //   Widget buildDownloadProgress()=>StreamBuilder(
-  //   stream: downloadTask?.snapshotEvents,
-  //   builder: (context, snapshot) {
-  //     if(snapshot.hasData){
-  //       final data = snapshot.data!;
-  //       double progress = data.bytesTransferred/data.totalBytes;
-  //       return  SizedBox(
-  //         height: 50,
-  //         child: Stack(
-  //           fit: StackFit.expand,
-  //           children: [
-  //             LinearProgressIndicator(
-  //               value: progress,
-  //               backgroundColor: Colors.grey,
-  //               color: Colors.green,
-  //             ),
-  //             Center(
-  //               child: Text('${(100*progress).roundToDouble()}%', style: TextStyle(color: Colors.white)),
-  //               )
-  //             ],
-  //           ),);
-  //     }else{
-  //       return const SizedBox(height: 50);
-  //     }
-  //   }
-
-  // );
-
-  // Widget _searchTextField(BuildContext context) {
-  //   return TextField(
-  //     onSubmitted: (value) {
-  //       BlocProvider.of<TaskListBloc>(context)
-  //           .add(TaskSearchEvent(query: value));
-  //     },
-  //     autofocus: true,
-  //     cursorColor: Colors.white,
-  //     style: TextStyle(
-  //       color: Colors.white,
-  //       fontSize: 20,
-  //     ),
-  //     textInputAction: TextInputAction.search,
-  //     decoration: InputDecoration(
-  //       enabledBorder:
-  //           UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-  //       focusedBorder:
-  //           UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-  //       hintText: 'Search',
-  //       hintStyle: TextStyle(
-  //         color: Colors.white60,
-  //         fontSize: 20,
-  //       ),
-  //     ),
-  //   );
-  // }
 }

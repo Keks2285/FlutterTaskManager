@@ -25,7 +25,7 @@ class CommentsPage extends StatefulWidget {
 class _CommentsPageState extends State<CommentsPage> {
   bool stop = false;
   //bool isRedirected =false;
-  bool _searchBoolean = false;
+ 
   //int totalValueItems = 0;
   @override
   Widget build(BuildContext context) {
@@ -61,15 +61,8 @@ class _CommentsPageState extends State<CommentsPage> {
                     Navigator.of(context).pop();
                   },
                 ),
-                actions: !_searchBoolean
-                    ? [
-                        IconButton(
-                            icon: Icon(Icons.search),
-                            onPressed: () {
-                              setState(() {
-                                _searchBoolean = true;
-                              });
-                            }),
+                actions: [
+                       
                         IconButton(
                             icon: const Icon(Icons.logout),
                             onPressed: () {
@@ -78,16 +71,6 @@ class _CommentsPageState extends State<CommentsPage> {
                               GroupsRepo.allGroups.clear();
                               Navigator.pushReplacementNamed(context, "/SignIn",arguments: false);
                             })
-                      ]
-                    : [
-                        // IconButton(
-                        //     icon: Icon(Icons.clear),
-                        //     onPressed: () {
-                        //       setState(() {
-                        //         _searchBoolean = false;
-                        //         BlocProvider.of<TaskListBloc>(context).add(TaskSearchEvent(query:""));
-                        //       });
-                        //     })
                       ]
                 // actions:  [
 
@@ -127,7 +110,7 @@ class _CommentsPageState extends State<CommentsPage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                        "${state.Comments[index].dateComment}\n${"${state.Comments[index].comment!}\n"}\n ${state.Comments[index].email.toString().replaceAll(".000Z", "")}"),
+                                        "${state.Comments[index].dateComment.toString().substring(0, state.Comments[index].dateComment.toString().length - 7)}\n${"${state.Comments[index].comment!}\n"}\n ${state.Comments[index].email.toString().replaceAll(".000Z", "")}"),
                                     if (adminID == AppEnv.userId) 
                                         IconButton(
                                         onPressed: () {

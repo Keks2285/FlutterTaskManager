@@ -53,7 +53,7 @@ class _TaskListPageState extends State<TaskListPage> {
                 //title: _searchTextField(context),
                 //title:  _searchTextField(),
                 title:
-                    !_searchBoolean ? Text("ToDo") : _searchTextField(context),
+                    !_searchBoolean ? Text("Личные задачи") : _searchTextField(context),
                 actions: !_searchBoolean
                     ? [
                         IconButton(

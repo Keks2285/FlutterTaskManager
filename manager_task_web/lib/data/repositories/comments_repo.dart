@@ -75,12 +75,6 @@ class ComentsRepo{
             'stringComment': comment
           }
         );
-        var a =Comment(
-              id: result.data["data"]["id"]  , 
-              comment: result.data["data"]["stringComment"], 
-              email: result.data["data"]["authorEmail"],
-              dateComment:  DateTime.now()
-              );
          allComments.add(
             Comment(
               id: result.data["data"]["id"]  , 

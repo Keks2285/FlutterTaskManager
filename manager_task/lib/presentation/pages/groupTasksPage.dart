@@ -95,7 +95,7 @@ class _GroupTasksPageState extends State<GroupTasksPage> {
                 //title: _searchTextField(context),
                 //title:  _searchTextField(),
                 title:
-                    !_searchBoolean ? Text("ToDo") : _searchTextField(context),
+                    !_searchBoolean ? Text("Групповые задачи") : _searchTextField(context),
                 actions: !_searchBoolean
                     ? [
                         IconButton(

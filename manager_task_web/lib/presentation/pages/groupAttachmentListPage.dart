@@ -121,7 +121,7 @@ class _GroupAttachmentsListPageState extends State<GroupAttachmentsListPage> {
     //GroupAtachmentsRepository().LoadGroupAttachments(taskID);
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Attachments"),
+        title: Text("Вложения"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

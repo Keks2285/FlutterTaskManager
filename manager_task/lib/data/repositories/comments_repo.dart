@@ -80,7 +80,7 @@ class ComentsRepo{
               id: result.data["id"]  , 
               comment: result.data["stringComment"], 
               email: result.data["authorEmail"],
-              dateComment:  DateTime.parse(result.data["dateComment"])
+              dateComment:  DateTime.now()
               ));
      return Right(1);
     }on DioError catch(e){
@@ -89,34 +89,6 @@ class ComentsRepo{
     }
 
   }
-
-
-
-
-  // Future<Either<String, int>> joinGroup(String nameGroup) async{
-  //   try{
-  //     var result = await DioProvider().dio.post( 
-  //         '/groups/${nameGroup}',
-  //         options: Options(headers: {
-  //           "Content-Type": "application/json",
-  //           "Authorization":
-  //               "Bearer ${AppEnv.userRefreshtoken}",
-  //         })
-  //       );
-  //        allGroups.add(
-  //           Group(
-  //             id: result.data["id"] , 
-  //             namegroup: result.data["nameGroup"], 
-  //             adminid: result.data["adminid"]));
-  //    return Right(1);
-  //   }on DioError catch(e){
-
-  //     if(e.response?.data['message']=='non_null_violation')return Left('Такой группы не существует');
-
-  //     return Left(e.response?.data['message']??'Проблемы с сетью, проверьте подключение');
-  //   }
-
-  // }
 
 
 }
