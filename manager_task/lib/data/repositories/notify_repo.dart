@@ -21,41 +21,7 @@ for (PendingNotificationRequest pendingNotification in pendingNotifications) {
   }
 }
     allNotifies  = await flutterLocalNotificationsPlugin.pendingNotificationRequests();
-  //   for (PendingNotificationRequest pendingNotification in pendingNotifications) {
-  //   final String id = pendingNotification.id.toString();
-  //   final String title = pendingNotification.title!;
-  //   final String body = pendingNotification.body!;
-  //   final DateTime scheduledDate = pendingNotification.scheduledDate;
-
-  //   print('id: $id, title: $title, body: $body, payload: $payload, scheduledDate: $scheduledDate');
-  // }
-    //allNotifies.clear();
-    // final dbPath = await getDatabasesPath();
-    // final db = await openDatabase(join(dbPath, 'taskDB.db'));
-    // final List<Map<String, dynamic>> maps = await db.query('notifications');
-    // allNotifies = List.generate(maps.length, (i) {
-    //   return Notify(
-    //     id: maps[i]['id'],
-    //     title: maps[i]['title'],
-    //     body: maps[i]['body'],
-    //     date_time: maps[i]['scheduled_date_time'],
-    //   );
-    // });
-    // var a=allNotifies;
   }
-
-
-  // Future deleteNitification(int id)async{
-  //   allNotifies.removeWhere((notify) => notify.id == id);
-  //   final dbPath = await getDatabasesPath();
-  //   final db = await openDatabase(join(dbPath, 'taskDB.db'));
-  //   await db.delete(
-  //   'notifications',
-  //   where: 'id = ?',
-  //   whereArgs: [id],
-  // );
-  // }
-
 }
 
 

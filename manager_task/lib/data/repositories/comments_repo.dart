@@ -75,11 +75,17 @@ class ComentsRepo{
             'stringComment': comment
           }
         );
+        // var a = Comment(
+        //       id: result.data["data"]["id"]  , 
+        //       comment: result.data["data"]["stringComment"], 
+        //       email: result.data["data"]["authorEmail"],
+        //       dateComment:  DateTime.now()
+        //       ); 
          allComments.add(
             Comment(
-              id: result.data["id"]  , 
-              comment: result.data["stringComment"], 
-              email: result.data["authorEmail"],
+              id: result.data["data"]["id"]  , 
+              comment: result.data["data"]["stringComment"], 
+              email: result.data["data"]["authorEmail"],
               dateComment:  DateTime.now()
               ));
      return Right(1);
